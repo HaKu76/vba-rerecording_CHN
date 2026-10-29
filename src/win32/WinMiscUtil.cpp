@@ -4,6 +4,8 @@
 #include "resource.h"
 #include "../NLS.h"
 #include "VBA.h"
+#include "ClearOverlay.h"
+#include "../common/Text.h"
 #include "Reg.h"
 #include "../common/SystemGlobals.h"
 #include "../common/movie.h"
@@ -340,7 +342,17 @@ int winScreenCapture(int captureNumber)
 		return 0;
 	}
 
-	if (theApp.captureFormat == 0)
+	if (textMethod == 0 && winHasClearOverlay())
+	{
+		int width, height;
+		systemGetLCDResolution(width, height);
+		int pitch = theApp.filterWidth * (systemColorDepth / 8) + (systemColorDepth == 24 ? 0 : 4);
+		systemClonePixBuffer(osd);
+		winCaptureClearOverlay(osd, pitch);
+		if (theApp.captureFormat == 0) utilWritePNGFile(captureName, width, height, osd);
+		else utilWriteBMPFile(captureName, width, height, osd);
+	}
+	else if (theApp.captureFormat == 0)
 		theApp.emulator.emuWritePNG(captureName);
 	else
 		theApp.emulator.emuWriteBMP(captureName);

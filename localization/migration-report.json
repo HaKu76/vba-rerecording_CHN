@@ -1,0 +1,16 @@
+{
+  "reference": "vba-v24m-svn480.LRC4-xp140\\vba-v24m-svn480+LRC4.exe",
+  "sha256": "1a45b992fa5ebb6406ca2cd2aeb45a8b22c14024ddbab29a80719fd423cc7d82",
+  "counts": {
+    "dialogs": 51,
+    "menus": 3,
+    "strings": 189
+  },
+  "change_count": 564,
+  "menu_mismatches": [],
+  "supplemented": {
+    "ui": 389,
+    "strings": 180,
+    "filters": 18
+  }
+}

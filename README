@@ -1,3 +1,8 @@
+Chinese HD2 edition: see documentation/README-zh-CN.txt.
+Build: PowerShell tools/build_zh.ps1; releases are written to dist/.
+GitHub Actions builds pushes/PRs; pushing a v* tag publishes a release.
+Binary distributions contain no test Lua scripts. Original translation: Hakuhiro/白希洛.
+
 Welcome to version 1.7.2 of VisualBoyAdvance [SDL].
 This is a GB/GBC/GBA emulator for Windows, Linux, MacOS X and BeOS.
 

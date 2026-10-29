@@ -78,7 +78,8 @@ void WinLuaOnStart(int hDlgAsInt)
 	//info.started = true;
 	EnableWindow(GetDlgItem(hDlg, IDC_BUTTON_LUABROWSE), false); // disable browse while running because it misbehaves if clicked in a frameadvance loop
 	EnableWindow(GetDlgItem(hDlg, IDC_BUTTON_LUASTOP), true);
-	SetWindowText(GetDlgItem(hDlg, IDC_BUTTON_LUARUN), "Restart");
+	// Unicode caption: restarting a script must not restore the English label.
+	SetWindowTextW(GetDlgItem(hDlg, IDC_BUTTON_LUARUN), L"\x91cd\x65b0\x8fd0\x884c");
 	SetWindowText(GetDlgItem(hDlg, IDC_LUACONSOLE), ""); // clear the console
 //	Show_Genesis_Screen(HWnd); // otherwise we might never show the first thing the script draws
 }
@@ -95,7 +96,7 @@ void WinLuaOnStop(int hDlgAsInt)
 	//info.started = false;
 	EnableWindow(GetDlgItem(hDlg, IDC_BUTTON_LUABROWSE), true);
 	EnableWindow(GetDlgItem(hDlg, IDC_BUTTON_LUASTOP), false);
-	SetWindowText(GetDlgItem(hDlg, IDC_BUTTON_LUARUN), "Run");
+	SetWindowTextW(GetDlgItem(hDlg, IDC_BUTTON_LUARUN), L"\x8fd0\x884c");
 //	if(statusOK)
 //		Show_Genesis_Screen(MainWindow->getHWnd()); // otherwise we might never show the last thing the script draws
 	//if(info.closeOnStop)

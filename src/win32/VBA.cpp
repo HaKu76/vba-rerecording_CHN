@@ -3,6 +3,8 @@
 #include "stdafx.h"
 #include <mmsystem.h>
 #include <cassert>
+#include <locale>
+#include <vector>
 
 #include "resource.h"
 #include "VBA.h"
@@ -16,6 +18,10 @@
 #include "WinMiscUtil.h"
 #include "Dialogs/LangSelect.h"
 #include "Dialogs/ramwatch.h"
+#include "ClearOverlay.h"
+#include "../common/lua-win32-text.h"
+
+#pragma comment(lib, "msimg32.lib")
 
 #include "../gba/GBA.h"
 #include "../gba/GBAGlobals.h"
@@ -69,6 +75,9 @@ extern "C" bool cpu_mmx;
 
 void DrawTextMessages(u8 *dest, int pitch, int left, int bottom)
 {
+	// Display-only status messages now share the independent high-resolution
+	// layer. Keep the original explicit in-game/AVI text mode available.
+	if (textMethod != 0) return;
 	for (int slot = 0; slot < SCREEN_MESSAGE_SLOTS; slot++)
 	{
 		if (theApp.screenMessage[slot])
@@ -77,6 +86,10 @@ void DrawTextMessages(u8 *dest, int pitch, int left, int bottom)
 			     (int)(GetTickCount() - theApp.screenMessageTime[slot]) < theApp.screenMessageDuration[slot]) &&
 			    (!theApp.disableStatusMessage || slot == 1 || slot == 2))
 			{
+				// The bitmap HUD font cannot render localized multibyte messages.
+				if (drawTextMultibyte(dest, pitch, left, bottom - 14 * (slot + 1),
+					pitch / (systemColorDepth / 8), bottom, theApp.screenMessageBuffer[slot]))
+					continue;
 				drawText(dest,
 				         pitch,
 				         left,
@@ -90,6 +103,233 @@ void DrawTextMessages(u8 *dest, int pitch, int left, int bottom)
 			}
 		}
 	}
+}
+
+namespace
+{
+struct ClearStatusPlot
+{
+	u32 *pixels;
+	int width;
+	u32 foreground, outline;
+	void operator()(int x, int y, bool border) const
+	{
+		u32 colour = border ? outline : foreground;
+		u32 &destination = pixels[y * width + x];
+		if (!transparentText) { destination = colour; return; }
+		// Preserve the status menu's 50% transparency, including when a Lua
+		// label lies beneath the status message in the same display layer.
+		int alpha = 128, retained = ((255 - alpha) * (destination >> 24) + 128) / 255;
+		int total = alpha + retained;
+		u32 result = total << 24;
+		for (int shift = 0; shift < 24; shift += 8)
+			result |= (((((colour >> shift) & 255) * alpha +
+				((destination >> shift) & 255) * retained + total / 2) / total) << shift);
+		destination = result;
+	}
+};
+
+u32 clearStatusColour(int index)
+{
+	static const u32 palette[] = { 0xffffffff, 0xffff0000, 0xffffff00, 0xff00ff00,
+		0xff00ffff, 0xff0000ff, 0xffff00ff, 0xff000000 };
+	return palette[index >= 0 && index < 8 ? index : 0];
+}
+}
+
+bool winHasClearOverlay()
+{
+	int width, height;
+	if (VBALuaHDOverlay(width, height)) return true;
+	for (int slot = 0; slot < SCREEN_MESSAGE_SLOTS; ++slot)
+		if (theApp.screenMessage[slot] && (!theApp.disableStatusMessage || slot == 1 || slot == 2) &&
+			(theApp.screenMessageDuration[slot] < 0 ||
+			(int)(GetTickCount() - theApp.screenMessageTime[slot]) < theApp.screenMessageDuration[slot])) return true;
+	return false;
+}
+
+const u32 *winPrepareClearOverlay(int &width, int &height)
+{
+	if (!winHasClearOverlay()) return NULL;
+	int lcdWidth, lcdHeight, baseWidth, baseHeight, offsetX, offsetY;
+	systemGetLCDResolution(lcdWidth, lcdHeight);
+	systemGetLCDBaseSize(baseWidth, baseHeight);
+	systemGetLCDBaseOffset(offsetX, offsetY);
+	width = lcdWidth * 3; height = lcdHeight * 3;
+	if (width <= 0 || height <= 0) return NULL;
+	static std::vector<u32> pixels;
+	pixels.assign(width * height, 0);
+	int luaWidth, luaHeight;
+	const uint32 *luaPixels = VBALuaHDOverlay(luaWidth, luaHeight);
+	bool used = luaPixels != NULL;
+	if (luaPixels)
+		for (int y = 0; y < baseHeight * 3 && y < luaHeight; ++y)
+		{
+			int targetY = y + offsetY * 3;
+			int copyWidth = min(baseWidth * 3, min(luaWidth, width - offsetX * 3));
+			if (targetY >= 0 && targetY < height && copyWidth > 0)
+				memcpy(&pixels[targetY * width + offsetX * 3], &luaPixels[y * luaWidth], copyWidth * 4);
+		}
+	static LuaWin32Text::Rasterizer font;
+	if (!font.setSize(24)) return used ? &pixels[0] : NULL;
+	for (int slot = 0; slot < SCREEN_MESSAGE_SLOTS; ++slot)
+	{
+		if (!theApp.screenMessage[slot]) continue;
+		if (theApp.screenMessageDuration[slot] >= 0 &&
+			(int)(GetTickCount() - theApp.screenMessageTime[slot]) >= theApp.screenMessageDuration[slot])
+		{
+			theApp.screenMessage[slot] = false;
+			continue;
+		}
+		if (theApp.disableStatusMessage && slot != 1 && slot != 2) continue;
+		const CString &message = theApp.screenMessageBuffer[slot];
+		int count = MultiByteToWideChar(CP_ACP, 0, message, message.GetLength(), NULL, 0);
+		if (!count) continue;
+		std::wstring text(count, L'\0');
+		MultiByteToWideChar(CP_ACP, 0, message, message.GetLength(), &text[0], count);
+		ClearStatusPlot plot = { &pixels[0], width, clearStatusColour(textColor),
+			textColor == 7 ? 0xffffffff : 0xff000000 };
+		const CString &colours = theApp.screenMessageColorBuffer[slot];
+		// Color lists in the original status API are byte-indexed. Preserve
+		// their meaning for ASCII counters; localized messages use textColor.
+		bool ascii = true;
+		for (size_t i = 0; i < text.size(); ++i) if (text[i] >= 128) ascii = false;
+		if (ascii && !colours.IsEmpty())
+		{
+			for (int pass = 0; pass < 2; ++pass)
+			{
+				int pen = 6;
+				for (size_t i = 0; i < text.size(); ++i)
+				{
+					if ((int)i < colours.GetLength())
+					{
+						int colour = (unsigned char)colours[(int)i] - 1;
+						plot.foreground = clearStatusColour(colour);
+						plot.outline = colour == 7 ? 0xffffffff : 0xff000000;
+					}
+					LuaWin32Text::Draw(font, text.substr(i, 1), pen, height - 30 * (slot + 1),
+						width, height, plot, pass, outlinedText ? 2 : 0);
+					const LuaWin32Text::Glyph *glyph = font.get(text[i]);
+					if (glyph) pen += glyph->width;
+				}
+			}
+		}
+		else LuaWin32Text::Draw(font, text, 6, height - 30 * (slot + 1),
+			width, height, plot, -1, outlinedText ? 2 : 0);
+		used = true;
+	}
+	return used ? &pixels[0] : NULL;
+}
+
+void winDrawClearOverlay(HDC target, const RECT &destination)
+{
+	int sourceWidth = 0, sourceHeight = 0;
+	const u32 *source = winPrepareClearOverlay(sourceWidth, sourceHeight);
+	if (!source || !target) return;
+	int width = destination.right - destination.left, height = destination.bottom - destination.top;
+	if (width <= 0 || height <= 0 || width > 8192 || height > 8192) return;
+	struct Surface
+	{
+		HDC dc;
+		HBITMAP bitmap;
+		HGDIOBJ previous;
+		u32 *bits;
+		int width, height;
+		Surface() : dc(CreateCompatibleDC(NULL)), bitmap(NULL), previous(NULL), bits(NULL), width(0), height(0) {}
+		~Surface() { if (previous) SelectObject(dc, previous); if (bitmap) DeleteObject(bitmap); if (dc) DeleteDC(dc); }
+	};
+	static Surface surface;
+	if (!surface.dc) return;
+	if (width != surface.width || height != surface.height)
+	{
+		BITMAPINFO info = {0};
+		info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+		info.bmiHeader.biWidth = width; info.bmiHeader.biHeight = -height;
+		info.bmiHeader.biPlanes = 1; info.bmiHeader.biBitCount = 32;
+		void *bits = NULL;
+		HBITMAP next = CreateDIBSection(surface.dc, &info, DIB_RGB_COLORS, &bits, NULL, 0);
+		if (!next) return;
+		HGDIOBJ old = SelectObject(surface.dc, next);
+		if (!old || old == HGDI_ERROR) { DeleteObject(next); return; }
+		if (!surface.previous) surface.previous = old;
+		if (surface.bitmap) DeleteObject(surface.bitmap);
+		surface.bitmap = next; surface.bits = (u32 *)bits;
+		surface.width = width; surface.height = height;
+	}
+	GdiFlush();
+	// Scale in memory with nearest-neighbor, then alpha-blend 1:1. Neither the
+	// game filter nor the driver's stretch mode can soften the glyph pixels.
+	for (int y = 0; y < height; ++y)
+		for (int x = 0; x < width; ++x)
+		{
+			u32 colour = source[(y * sourceHeight / height) * sourceWidth + x * sourceWidth / width];
+			u32 alpha = colour >> 24;
+			surface.bits[y * width + x] = (alpha == 0 || alpha == 255) ? colour : (alpha << 24) |
+				((((colour >> 16) & 255) * alpha / 255) << 16) |
+				((((colour >> 8) & 255) * alpha / 255) << 8) | ((colour & 255) * alpha / 255);
+		}
+	BLENDFUNCTION blend = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+	AlphaBlend(target, destination.left, destination.top, width, height, surface.dc, 0, 0, width, height, blend);
+}
+
+void winCaptureClearOverlay(u8 *frame, int pitch)
+{
+	// The game-internal mode includes HUDs in native-resolution captures, but
+	// never burns the HD labels into the live framebuffer used for display.
+	if (textMethod != 0) return;
+	int width = 0, height = 0;
+	const u32 *overlay = winPrepareClearOverlay(width, height);
+	if (!overlay) return;
+	int bytes = systemColorDepth / 8;
+	for (int y = 0; y < height / 3; ++y)
+		for (int x = 0; x < width / 3; ++x)
+		{
+			unsigned int alpha = 0, red = 0, green = 0, blue = 0;
+			// Area average of the 3x3 samples, with alpha-weighted colors.
+			for (int sy = 0; sy < 3; ++sy)
+				for (int sx = 0; sx < 3; ++sx)
+				{
+					u32 colour = overlay[(y * 3 + sy) * width + x * 3 + sx], a = colour >> 24;
+					alpha += a; red += ((colour >> 16) & 255) * a;
+					green += ((colour >> 8) & 255) * a; blue += (colour & 255) * a;
+				}
+			if (!alpha) continue;
+			red /= alpha; green /= alpha; blue /= alpha;
+			alpha = (alpha + 4) / 9;
+			u8 *pixel = frame + (y + 1) * pitch + x * bytes;
+			unsigned int r, g, b;
+			if (bytes == 2)
+			{
+				u16 value = *(u16 *)pixel;
+				r = ((value >> systemRedShift) & 31) * 255 / 31;
+				g = ((value >> systemGreenShift) & 31) * 255 / 31;
+				b = ((value >> systemBlueShift) & 31) * 255 / 31;
+			}
+			else if (bytes == 3)
+			{
+				r = pixel[systemRedShift > systemBlueShift ? 2 : 0]; g = pixel[1];
+				b = pixel[systemRedShift > systemBlueShift ? 0 : 2];
+			}
+			else
+			{
+				u32 value = *(u32 *)pixel;
+				r = (value >> (systemRedShift - 3)) & 255;
+				g = (value >> (systemGreenShift - 3)) & 255;
+				b = (value >> (systemBlueShift - 3)) & 255;
+			}
+			red = (red * alpha + r * (255 - alpha) + 127) / 255;
+			green = (green * alpha + g * (255 - alpha) + 127) / 255;
+			blue = (blue * alpha + b * (255 - alpha) + 127) / 255;
+			if (bytes == 2) *(u16 *)pixel = ((red >> 3) << systemRedShift) |
+				((green >> 3) << systemGreenShift) | ((blue >> 3) << systemBlueShift);
+			else if (bytes == 3)
+			{
+				pixel[systemRedShift > systemBlueShift ? 2 : 0] = (u8)red; pixel[1] = (u8)green;
+				pixel[systemRedShift > systemBlueShift ? 0 : 2] = (u8)blue;
+			}
+			else *(u32 *)pixel = (red << (systemRedShift - 3)) |
+				(green << (systemGreenShift - 3)) | (blue << (systemBlueShift - 3));
+		}
 }
 
 void directXMessage(const char *msg)
@@ -1963,7 +2203,7 @@ void VBA::loadSettings()
 	outlinedText		 = regQueryDwordValue("outlinedText", TRUE) != 0;
 	transparentText		 = regQueryDwordValue("transparentText", FALSE) != 0;
 	textColor			 = regQueryDwordValue("textColor", 0);
-	textMethod			 = regQueryDwordValue("textMethod", 1);
+	textMethod			 = regQueryDwordValue("textMethod", 0);
 	frameCounter		 = regQueryDwordValue("frameCounter", false) ? true : false;
 	lagCounter			 = regQueryDwordValue("lagCounter", false) ? true : false;
 	extraCounter		 = regQueryDwordValue("extraCounter", false) ? true : false;

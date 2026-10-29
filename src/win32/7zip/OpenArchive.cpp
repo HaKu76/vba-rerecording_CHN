@@ -6,6 +6,7 @@
 #include <cerrno>
 #include <cassert>
 #include <cstring>
+#include <string>
 #include <map>
 #include <vector>
 #include <algorithm>

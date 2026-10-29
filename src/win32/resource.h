@@ -1069,6 +1069,8 @@
 #define IDC_PROMPT_EDIT                 43412
 
 // Next default values for new objects
+#define IDR_FONT_FUSION_8              43530
+#define IDR_FONT_FUSION_12             43531
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS

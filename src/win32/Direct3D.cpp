@@ -11,6 +11,7 @@
 #include "MainWnd.h"
 #include "Reg.h"
 #include "VBA.h"
+#include "ClearOverlay.h"
 
 //#include "../common/System.h"
 #include "../common/SystemGlobals.h"
@@ -72,6 +73,7 @@ private:
 	LPDIRECT3D9           pD3D;
 	LPDIRECT3DDEVICE9     pDevice;
 	LPDIRECT3DTEXTURE9    pTexture;
+	LPDIRECT3DTEXTURE9    pClearTexture;
 	D3DSURFACE_DESC       dsdBackBuffer;
 	D3DPRESENT_PARAMETERS dpp;
 	D3DFORMAT             screenFormat;
@@ -84,12 +86,12 @@ private:
 	unsigned int textureSize;
 	D3DTLVERTEX verts[4];
 
-
 	void restoreDeviceObjects();
 	void invalidateDeviceObjects();
 	bool initializeOffscreen(int w, int h);
 	void updateFiltering(int);
 	void calculateVertices();
+	void renderClearOverlay();
 };
 
 Direct3DDisplay::Direct3DDisplay()
@@ -98,6 +100,7 @@ Direct3DDisplay::Direct3DDisplay()
 	pD3D           = NULL;
 	pDevice        = NULL;
 	pTexture       = NULL;
+	pClearTexture  = NULL;
 	pFont          = NULL;
 	pFontSprite    = NULL;
 	screenFormat   = D3DFMT_R5G6B5;
@@ -115,6 +118,7 @@ Direct3DDisplay::~Direct3DDisplay()
 
 void Direct3DDisplay::cleanup()
 {
+	if (pClearTexture) { pClearTexture->Release(); pClearTexture = NULL; }
 	if (pD3D != NULL)
 	{
 		if (pFont)
@@ -576,11 +580,6 @@ gbaLoopEnd:
 					         buffer);
 			}
 
-			if (textMethod == 1)
-			{
-				DrawTextMessages((u8 *)locked.pBits, locked.Pitch, theApp.rect.left, theApp.rect.bottom);
-			}
-
 			pTexture->UnlockRect(0);
 
 			// set the texture
@@ -600,83 +599,41 @@ gbaLoopEnd:
 #endif
 		}
 
-		if (textMethod == 2)
-		{
-			for (int slot = 0; slot < SCREEN_MESSAGE_SLOTS; slot++)
-			{
-				if (theApp.screenMessage[slot])
-				{
-					if ((theApp.screenMessageDuration[slot] < 0 || 
-						(int)(GetTickCount() - theApp.screenMessageTime[slot]) < theApp.screenMessageDuration[slot]) &&
-					    (!theApp.disableStatusMessage || slot == 1 || slot == 2) && pFont != NULL && pFontSprite != NULL)
-					{
-						pFontSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
-
-						RECT     r;
-						D3DCOLOR color;
-
-						r.left   = 10;
-						r.top    = dpp.BackBufferHeight - 20*(slot+1);
-						r.right  = dpp.BackBufferWidth - 10;
-						r.bottom = r.top + 20;
-
-						if (outlinedText)
-						{
-							color = textColor != 7 ? D3DCOLOR_ARGB(255, 0, 0, 0) : D3DCOLOR_ARGB(255, 255, 255, 255);
-
-							// draw outline
-							const static int xd [8] = {-1, 0, 1, 1, 1, 0, -1, -1};
-							const static int yd [8] = {-1, -1, -1, 0, 1, 1, 1, 0};
-							for (int i = 0; i < 8; i++)
-							{
-								RECT r2 = r;
-								r2.left += xd[i]; r2.right += xd[i];
-								r2.top  += yd[i]; r2.bottom += yd[i];
-
-								pFont->DrawText(pFontSprite, theApp.screenMessageBuffer[slot], -1, &r2, 0, color);
-							}
-						}
-
-						// draw center text
-						switch (textColor)
-						{
-						case 0:
-							color = D3DCOLOR_ARGB(255, 255, 255, 255); break;
-						case 1:
-							color = D3DCOLOR_ARGB(255, 255, 0, 0); break;
-						case 2:
-							color = D3DCOLOR_ARGB(255, 255, 255, 0); break;
-						case 3:
-							color = D3DCOLOR_ARGB(255, 0, 255, 0); break;
-						case 4:
-							color = D3DCOLOR_ARGB(255, 0, 255, 255); break;
-						case 5:
-							color = D3DCOLOR_ARGB(255, 0, 0, 255); break;
-						case 6:
-							color = D3DCOLOR_ARGB(255, 255, 0, 255); break;
-						case 7:
-							color = D3DCOLOR_ARGB(255, 0, 0, 0); break;
-						}
-						pFont->DrawText(pFontSprite, theApp.screenMessageBuffer[slot], -1, &r, 0, color);
-
-						pFontSprite->End();
-					}
-					else
-					{
-						theApp.screenMessage[slot] = false;
-					}
-				}
-			}
-		}
-
+		renderClearOverlay();
 		pDevice->EndScene();
 
 		pDevice->Present(NULL, NULL, NULL, NULL);
 	}
 }
 
+void Direct3DDisplay::renderClearOverlay()
+{
+	int overlayWidth = 0, overlayHeight = 0;
+	const u32 *pixels = winPrepareClearOverlay(overlayWidth, overlayHeight);
+	if (!pixels || !pFontSprite || overlayWidth > 1024 || overlayHeight > 1024) return;
+	if (!pClearTexture && FAILED(pDevice->CreateTexture(1024, 1024, 1, 0,
+		D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &pClearTexture, NULL))) return;
+	D3DLOCKED_RECT lock;
+	if (FAILED(pClearTexture->LockRect(0, &lock, NULL, 0))) return;
+	for (int y = 0; y < overlayHeight; ++y)
+		memcpy((u8 *)lock.pBits + y * lock.Pitch, pixels + y * overlayWidth, overlayWidth * 4);
+	pClearTexture->UnlockRect(0);
+	if (FAILED(pFontSprite->Begin(D3DXSPRITE_ALPHABLEND))) return;
+	D3DXMATRIX transform;
+	D3DXMatrixScaling(&transform, (float)dpp.BackBufferWidth / overlayWidth,
+		(float)dpp.BackBufferHeight / overlayHeight, 1.0f);
+	pFontSprite->SetTransform(&transform);
+	pDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_POINT);
+	pDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
+	pDevice->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_NONE);
+	RECT source = { 0, 0, overlayWidth, overlayHeight };
+	pFontSprite->Draw(pClearTexture, &source, NULL, NULL, 0xffffffff);
+	pFontSprite->End();
+}
+
 void Direct3DDisplay::invalidateDeviceObjects()
 {
+	if (pClearTexture) { pClearTexture->Release(); pClearTexture = NULL; }
 	if (pFontSprite)
 	{
 		pFontSprite->Release();

@@ -1,0 +1,103 @@
+name: Windows build and release
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 40
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout full source history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Select package version
+        run: |
+          $version = if ($env:GITHUB_REF_TYPE -eq 'tag') {
+            $env:GITHUB_REF_NAME
+          } else {
+            'v24.1-zh-HD2-g' + $env:GITHUB_SHA.Substring(0, 7)
+          }
+          if ($version -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*$') { throw 'Invalid release label' }
+          "RELEASE_VERSION=$version" >> $env:GITHUB_ENV
+
+      - name: Compile resources and preserve original translation credit
+        run: |
+          cmd.exe /d /c tools\test_resources.cmd
+          if ($LASTEXITCODE -ne 0) { throw 'Resource compilation failed' }
+
+      - name: Build x86 emulator and package binary and source
+        run: ./tools/build_zh.ps1 -Rebuild -Version $env:RELEASE_VERSION
+
+      - name: Check release contents without starting emulator
+        run: |
+          python tests/check_release.py --version $env:RELEASE_VERSION
+          if ($LASTEXITCODE -ne 0) { throw 'Release contents check failed' }
+
+      - name: Upload downloadable packages
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: vba-rr-win32-${{ github.sha }}
+          path: |
+            dist/*.zip
+            dist/SHA256SUMS.txt
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+
+      - name: Upload build log on failure
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: windows-build-log-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build/logs/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout release notes
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Download checked packages
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: vba-rr-win32-${{ github.sha }}
+          path: release-assets
+
+      - name: Verify checksums and publish version tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd release-assets && sha256sum --check SHA256SUMS.txt)
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" release-assets/*.zip release-assets/SHA256SUMS.txt --clobber
+          else
+            gh release create "$RELEASE_TAG" --verify-tag \
+              --title "VBA-RR $RELEASE_TAG" \
+              --notes-file documentation/RELEASE-NOTES-zh-CN.txt \
+              release-assets/*.zip release-assets/SHA256SUMS.txt
+          fi

@@ -7,6 +7,7 @@
 #include "MainWnd.h"
 #include "Reg.h"
 #include "VBA.h"
+#include "ClearOverlay.h"
 
 #include "../common/System.h"
 #include "../common/SystemGlobals.h"
@@ -30,12 +31,16 @@ private:
 	LPDIRECTDRAWSURFACE7 ddsPrimary;
 	LPDIRECTDRAWSURFACE7 ddsOffscreen;
 	LPDIRECTDRAWSURFACE7 ddsFlip;
+	LPDIRECTDRAWSURFACE7 ddsPresent;
 	LPDIRECTDRAWCLIPPER  ddsClipper;
+	int presentWidth, presentHeight;
 	int  width;
 	int  height;
 	bool failed;
 
 	bool initializeOffscreen(int w, int h);
+	bool initializePresent(int w, int h);
+	void drawClearOverlay(LPDIRECTDRAWSURFACE7 surface, const RECT &destination);
 public:
 	DirectDrawDisplay();
 	virtual ~DirectDrawDisplay();
@@ -95,6 +100,8 @@ DirectDrawDisplay::DirectDrawDisplay()
 	ddsPrimary   = NULL;
 	ddsOffscreen = NULL;
 	ddsFlip      = NULL;
+	ddsPresent   = NULL;
+	presentWidth = presentHeight = 0;
 	ddsClipper   = NULL;
 	ddrawDLL     = NULL;
 	width        = 0;
@@ -109,6 +116,8 @@ DirectDrawDisplay::~DirectDrawDisplay()
 
 void DirectDrawDisplay::cleanup()
 {
+	if (ddsPresent) { ddsPresent->Release(); ddsPresent = NULL; }
+	presentWidth = presentHeight = 0;
 	if (pDirectDraw != NULL)
 	{
 		if (ddsClipper != NULL)
@@ -742,10 +751,6 @@ gbaLoopEnd:
 				         buffer);
 		}
 
-		if (textMethod == 1)
-		{
-			DrawTextMessages((u8 *)ddsDesc.lpSurface, ddsDesc.lPitch, theApp.rect.left, theApp.rect.bottom);
-		}
 	}
 	else if (theApp.ddrawDebug)
 		winlog("Error during lock: %08x\n", hret);
@@ -754,23 +759,22 @@ gbaLoopEnd:
 
 	if (hret == DD_OK)
 	{
-		// the correct point where to wait
-		if (theApp.vsync && !fastForward)
-		{
-			hret = pDirectDraw->WaitForVerticalBlank(DDWAITVB_BLOCKBEGIN, 0);
-		}
-
 		ddsOffscreen->PageLock(0);
 		if (theApp.tripleBuffering && theApp.videoOption > VIDEO_4X)
 		{
 			hret = ddsFlip->Blt(&theApp.dest, ddsOffscreen, NULL, DDBLT_WAIT, NULL);
 			if (hret == DD_OK)
 			{
+				// Compose before Flip: the primary surface never shows an
+				// intermediate game-only frame between two text passes.
+				if (winHasClearOverlay()) drawClearOverlay(ddsFlip, theApp.dest);
+				if (theApp.vsync && !fastForward)
+					pDirectDraw->WaitForVerticalBlank(DDWAITVB_BLOCKBEGIN, 0);
 				if (theApp.menuToggle || !theApp.active)
 				{
 					pDirectDraw->FlipToGDISurface();
 					ddsPrimary->SetClipper(ddsClipper);
-					hret = ddsPrimary->Blt(&theApp.dest, ddsFlip, NULL, DDBLT_ASYNC, NULL);
+					hret = ddsPrimary->Blt(&theApp.dest, ddsFlip, &theApp.dest, DDBLT_WAIT, NULL);
 					// if using emulation only, then we have to redraw the menu
 					// everytime. It seems like a bug in DirectDraw to me as we not
 					// overwritting the menu area at all.
@@ -783,7 +787,40 @@ gbaLoopEnd:
 		}
 		else
 		{
-			hret = ddsPrimary->Blt(&theApp.dest, ddsOffscreen, NULL, DDBLT_ASYNC, NULL);
+			LPDIRECTDRAWSURFACE7 presentSource = ddsOffscreen;
+			RECT presentRect = { 0, 0, theApp.dest.right - theApp.dest.left, theApp.dest.bottom - theApp.dest.top };
+			RECT *sourceRect = NULL;
+			if (winHasClearOverlay() && initializePresent(presentRect.right, presentRect.bottom))
+			{
+				HRESULT compose = ddsPresent->Blt(&presentRect, ddsOffscreen, NULL, DDBLT_WAIT, NULL);
+				if (FAILED(compose))
+				{
+					// Some drivers cannot stretch video memory into system memory.
+					// GDI can perform the same offscreen composition in that case.
+					HDC sourceDC, targetDC;
+					if (SUCCEEDED(ddsOffscreen->GetDC(&sourceDC)))
+					{
+						if (SUCCEEDED(ddsPresent->GetDC(&targetDC)))
+						{
+							SetStretchBltMode(targetDC, COLORONCOLOR);
+							if (StretchBlt(targetDC, 0, 0, presentRect.right, presentRect.bottom,
+								sourceDC, 0, 0, width, height, SRCCOPY)) compose = DD_OK;
+							GdiFlush();
+							ddsPresent->ReleaseDC(targetDC);
+						}
+						ddsOffscreen->ReleaseDC(sourceDC);
+					}
+				}
+				if (SUCCEEDED(compose))
+				{
+					drawClearOverlay(ddsPresent, presentRect);
+					presentSource = ddsPresent;
+					sourceRect = &presentRect;
+				}
+			}
+			if (theApp.vsync && !fastForward)
+				pDirectDraw->WaitForVerticalBlank(DDWAITVB_BLOCKBEGIN, 0);
+			hret = ddsPrimary->Blt(&theApp.dest, presentSource, sourceRect, DDBLT_WAIT, NULL);
 
 			if (hret == DDERR_SURFACELOST)
 			{
@@ -791,7 +828,7 @@ gbaLoopEnd:
 
 				if (hret == DD_OK)
 				{
-					hret = ddsPrimary->Blt(&theApp.dest, ddsOffscreen, NULL, DDBLT_ASYNC, NULL);
+					hret = ddsPrimary->Blt(&theApp.dest, presentSource, sourceRect, DDBLT_WAIT, NULL);
 				}
 			}
 		}
@@ -800,101 +837,37 @@ gbaLoopEnd:
 	else if (theApp.ddrawDebug)
 		winlog("Error during unlock: %08x\n", hret);
 
-	bool textMessageStarted = false;
-
-	if (textMethod == 2)
-	{
-		HDC hdc;
-
-		for (int slot = 0; slot < SCREEN_MESSAGE_SLOTS; slot++)
-		{
-			if (theApp.screenMessage[slot])
-			{
-				if ((theApp.screenMessageDuration[slot] < 0 || 
-					(int)(GetTickCount() - theApp.screenMessageTime[slot]) < theApp.screenMessageDuration[slot]) &&
-				    (!theApp.disableStatusMessage || slot == 1 || slot == 2))
-				{
-					if (!textMessageStarted)
-					{
-						textMessageStarted = true;
-						ddsPrimary->SetClipper(ddsClipper);
-						ddsPrimary->GetDC(&hdc);
-						SetBkMode(hdc, TRANSPARENT);
-						SetTextColor(hdc, textColor != 7 ? RGB(0, 0, 0) : RGB(255, 255, 255));
-					}
-
-					if (outlinedText)
-					{
-						// draw black outline
-						const static int xd [8] = {-1, 0, 1, 1, 1, 0, -1, -1};
-						const static int yd [8] = {-1, -1, -1, 0, 1, 1, 1, 0};
-						for (int i = 0; i < 8; i++)
-						{
-							TextOut(hdc,
-							        theApp.dest.left+10+xd[i],
-							        theApp.dest.bottom - 20*(slot+1)+yd[i],
-							        theApp.screenMessageBuffer[slot],
-							        strlen(theApp.screenMessageBuffer[slot]));
-						}
-					}
-				}
-				else
-				{
-					theApp.screenMessage[slot] = false;
-				}
-			}
-		}
-
-		if (textMessageStarted)
-		{
-			COLORREF color;
-			switch (textColor)
-			{
-			case 0:
-				color = RGB(255, 255, 255); break;
-			case 1:
-				color = RGB(255, 0, 0); break;
-			case 2:
-				color = RGB(255, 255, 0); break;
-			case 3:
-				color = RGB(0, 255, 0); break;
-			case 4:
-				color = RGB(0, 255, 255); break;
-			case 5:
-				color = RGB(0, 0, 255); break;
-			case 6:
-				color = RGB(255, 0, 255); break;
-			case 7:
-				color = RGB(0, 0, 0); break;
-			}
-			SetTextColor(hdc, color);
-
-			// draw center text
-			for (int slot = 0; slot < SCREEN_MESSAGE_SLOTS; slot++)
-			{
-				if (theApp.screenMessage[slot])
-				{
-					if ((theApp.screenMessageDuration[slot] < 0 || 
-						(int)(GetTickCount() - theApp.screenMessageTime[slot]) < theApp.screenMessageDuration[slot]) &&
-					    (!theApp.disableStatusMessage || slot == 1 || slot == 2))
-					{
-						TextOut(hdc, theApp.dest.left+10, theApp.dest.bottom - 20*(slot+1), theApp.screenMessageBuffer[slot],
-						        strlen(theApp.screenMessageBuffer[slot]));
-					}
-				}
-			}
-		}
-
-		if (textMessageStarted)
-		{
-			ddsPrimary->ReleaseDC(hdc);
-		}
-	}
-
 	if (hret != DD_OK)
 	{
 		if (theApp.ddrawDebug)
 			winlog("Error on update screen: %08x\n", hret);
+	}
+}
+
+bool DirectDrawDisplay::initializePresent(int w, int h)
+{
+	if (w <= 0 || h <= 0) return false;
+	if (ddsPresent && w == presentWidth && h == presentHeight)
+		return ddsPresent->IsLost() != DDERR_SURFACELOST || SUCCEEDED(ddsPresent->Restore());
+	if (ddsPresent) { ddsPresent->Release(); ddsPresent = NULL; }
+	DDSURFACEDESC2 desc = {0};
+	desc.dwSize = sizeof(desc);
+	desc.dwFlags = DDSD_CAPS | DDSD_WIDTH | DDSD_HEIGHT;
+	desc.dwWidth = w; desc.dwHeight = h;
+	desc.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_SYSTEMMEMORY;
+	if (FAILED(pDirectDraw->CreateSurface(&desc, &ddsPresent, NULL))) return false;
+	presentWidth = w; presentHeight = h;
+	return true;
+}
+
+void DirectDrawDisplay::drawClearOverlay(LPDIRECTDRAWSURFACE7 surface, const RECT &destination)
+{
+	HDC dc;
+	if (SUCCEEDED(surface->GetDC(&dc)))
+	{
+		winDrawClearOverlay(dc, destination);
+		GdiFlush(); // Finish GDI's batch before DirectDraw presents this surface.
+		surface->ReleaseDC(dc);
 	}
 }
 

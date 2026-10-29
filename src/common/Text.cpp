@@ -21,6 +21,9 @@
 /* Code originally from fceu/drawing.h file, adapted by Forgotten
  */
 #include "System.h"
+#if defined(WIN32) && !defined(SDL)
+#include "lua-win32-text.h"
+#endif
 
 bool outlinedText = true, transparentText = false;
 // textMethod:
@@ -244,6 +247,64 @@ static void calcColors(const int colorNum, int & lo, int & hi, int & out)
 		out = 0;  // black border
 }
 
+#if defined(WIN32) && !defined(SDL)
+struct StatusTextPlot
+{
+	u8 *screen;
+	int pitch, low, high, outline;
+	void operator()(int x, int y, bool border) const
+	{
+		if (border && !outlinedText) return;
+		int colour = border ? outline : high;
+		u8 *p = screen + y * pitch + x * (systemColorDepth / 8);
+		if (systemColorDepth == 16)
+		{
+			u16 &pixel = *(u16 *)p;
+			pixel = (u16)(transparentText ? (border ? outline : low)
+				+ ((pixel & (u16)~RGB_LOW_BITS_MASK) >> 1) : colour);
+		}
+		else if (systemColorDepth == 32)
+		{
+			u32 &pixel = *(u32 *)p;
+			pixel = transparentText ? (border ? outline : low)
+				+ ((pixel & 0xfefefe) >> 1) : colour;
+		}
+		else if (systemColorDepth == 24)
+			for (int i = 0; i < 3; ++i)
+			{
+				int channel = ((unsigned int)colour >> (i * 8)) & 255;
+				p[i] = (u8)(transparentText ? (channel >> 1) + (p[i] >> 1) : channel);
+			}
+	}
+};
+#endif
+
+bool drawTextMultibyte(u8 *screen, int pitch, int x, int y,
+                       int width, int height, const char *string)
+{
+#if defined(WIN32) && !defined(SDL)
+	bool nonASCII = false;
+	for (const unsigned char *p = (const unsigned char *)string; *p; ++p)
+		if (*p >= 128) { nonASCII = true; break; }
+	if (!nonASCII) return false;
+	// MFC's ANSI resource strings use the Windows system code page. Lua has its
+	// own strictly UTF-8 entry point and does not go through this conversion.
+	int length = MultiByteToWideChar(CP_ACP, 0, string, -1, NULL, 0);
+	if (length <= 1) return true;
+	std::wstring text(length, L'\0');
+	if (!MultiByteToWideChar(CP_ACP, 0, string, -1, &text[0], length)) return true;
+	text.resize(length - 1);
+	static LuaWin32Text::Rasterizer font;
+	if (!font.setSize(12)) return true;
+	StatusTextPlot plot = { screen, pitch, 0, 0, 0 };
+	calcColors(textColor, plot.low, plot.high, plot.outline);
+	LuaWin32Text::Draw(font, text, x, y, width, height, plot);
+	return true;
+#else
+	return false;
+#endif
+}
+
 int lastColID = 0;
 static void progressColorList(const char *& colorList, int & lo, int & hi, int & out)
 {
@@ -296,7 +357,7 @@ static void drawTextInternal(u8 *screen, int pitch, int x, int y,
 	{
 		while (*string)
 		{
-			char c   = *string++;
+			unsigned char c = (unsigned char)*string++;
 			u8 * scr = screen;
 
 			if (colorList)
@@ -354,7 +415,7 @@ static void drawTextInternal(u8 *screen, int pitch, int x, int y,
 	{
 		while (*string)
 		{
-			char c   = *string++;
+			unsigned char c = (unsigned char)*string++;
 			u8 * scr = screen;
 
 			if (colorList)
@@ -428,7 +489,7 @@ static void drawTextInternal(u8 *screen, int pitch, int x, int y,
 	{
 		while (*string)
 		{
-			char c   = *string++;
+			unsigned char c = (unsigned char)*string++;
 			u8 * scr = screen;
 
 			if (colorList)

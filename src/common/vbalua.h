@@ -62,6 +62,7 @@ bool8 VBALuaRerecordCountSkip();
 
 void VBALuaGui(uint8 *screen, int ppl, int width, int height);
 void VBALuaClearGui();
+const uint32 *VBALuaHDOverlay(int &width, int &height);
 
 char* VBAGetLuaScriptName();
 

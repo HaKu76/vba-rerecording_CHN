@@ -57,7 +57,11 @@
 #	define VBA_BUILDTYPE_STRING  "Interim"
 #endif
 
+#ifdef VBA_ZH_SOURCE_BUILD
+#define VBA_FEATURE_STRING " zh-CN Fusion2026.10.25 HD2"
+#else
 #define VBA_FEATURE_STRING ""
+#endif
 
 #if VBA_RR_MINOR_VERSION_NO > 0
 #	define VBA_RR_VERSION_NO VBA_RR_MAJOR_VERSION_NO ## . ## VBA_RR_MINOR_VERSION_NO

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Imported after the legacy project settings, only by build_zh.ps1. -->
+  <PropertyGroup>
+    <OutDir>$(MSBuildThisFileDirectory)..\build\msvc\$(MSBuildProjectName)\bin\</OutDir>
+    <IntDir>$(MSBuildThisFileDirectory)..\build\msvc\$(MSBuildProjectName)\obj\</IntDir>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(MSBuildProjectName)'=='VBA2010'">
+    <TargetName>VBA-rr-zh</TargetName>
+    <MFC_KeyFile Condition="Exists('$(MSBuildThisFileDirectory)..\build\dependencies\mfc\lib\x86\nafxcw.lib')">$(MSBuildThisFileDirectory)..\build\dependencies\mfc\lib\x86\nafxcw.lib</MFC_KeyFile>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/MP4 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MSBuildProjectName)'=='VBA2010'">
+    <ClCompile>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0601;WINVER=0x0601;_WIN32_WINDOWS=0x0601;VBA_ZH_SOURCE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)..\build\dependencies\mfc\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\fonts\fusion-pixel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+</Project>

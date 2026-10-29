@@ -1,0 +1,22 @@
+[
+  {
+    "release": "2026.10.25",
+    "language": "zh-Hans",
+    "pixels": 8,
+    "family": "Fusion Pixel 8px Mono zh-Hans",
+    "filename": "fusion-pixel-8px-monospaced-zh_hans.otf",
+    "upstream_url": "https://github.com/TakWolf/fusion-pixel-font/releases/download/2026.10.25/fusion-pixel-font-8px-monospaced-otf.woff2-v2026.10.25.zip",
+    "upstream_zip_sha256": "4759ac0335c892486621581ba66437934a8496271061f14c5cbb5622528b4bad",
+    "font_sha256": "7876ce4d77fe3cd0a50bd5c5815282f44762add69b829caca5c6193080d4821c"
+  },
+  {
+    "release": "2026.10.25",
+    "language": "zh-Hans",
+    "pixels": 12,
+    "family": "Fusion Pixel 12px Mono zh-Hans",
+    "filename": "fusion-pixel-12px-monospaced-zh_hans.otf",
+    "upstream_url": "https://github.com/TakWolf/fusion-pixel-font/releases/download/2026.10.25/fusion-pixel-font-12px-monospaced-otf.woff2-v2026.10.25.zip",
+    "upstream_zip_sha256": "010223860f2dc625d672377917a3d585da698ce67e947418b603f6410591556c",
+    "font_sha256": "170e4e5d6de9769ef1c9b1185c0d0c3964219c6df0d3e4677381156d57baea56"
+  }
+]

@@ -8,6 +8,7 @@
 #include "WinResUtil.h"
 #include "resource.h"
 #include "VBA.h"
+#include "ClearOverlay.h"
 #include "../gba/GBA.h"
 #include "../gba/GBAGlobals.h"
 #include "../gba/GBAinline.h"
@@ -238,6 +239,14 @@ static void systemRecordAviFrame(int width, int height)
 {
 	extern u32 linearSoundFrameCount;
 	extern u32 linearFrameCount;
+	u8 *recordFrame = pix;
+	if (textMethod == 0 && (theApp.aviRecording || theApp.nvVideoLog) && winHasClearOverlay())
+	{
+		systemClonePixBuffer(osd);
+		int pitch = theApp.filterWidth * (systemColorDepth / 8) + (systemColorDepth == 24 ? 0 : 4);
+		winCaptureClearOverlay(osd, pitch);
+		recordFrame = osd;
+	}
 
 	++linearFrameCount;
 	if (!theApp.sound)
@@ -284,7 +293,7 @@ static void systemRecordAviFrame(int width, int height)
 				assert(
 					width <= BMP_BUFFER_MAX_WIDTH && height <= BMP_BUFFER_MAX_HEIGHT
 					&& systemColorDepth <= BMP_BUFFER_MAX_DEPTH * 8);
-				utilWriteBMP(bmpBuffer, width, height, systemColorDepth, pix);
+				utilWriteBMP(bmpBuffer, width, height, systemColorDepth, recordFrame);
 				theApp.aviRecorder->AddFrame(bmpBuffer);
 			}
 		}
@@ -293,7 +302,7 @@ static void systemRecordAviFrame(int width, int height)
 		{
 			// convert from whatever bit depth to 16-bit, while stripping away extra pixels
 			assert(width <= BMP_BUFFER_MAX_WIDTH && height <= BMP_BUFFER_MAX_HEIGHT && 16 <= BMP_BUFFER_MAX_DEPTH * 8);
-			utilWriteBMP(bmpBuffer, width, -height, 16, pix);
+			utilWriteBMP(bmpBuffer, width, -height, 16, recordFrame);
 			NESVideoLoggingVideo((u8 *)bmpBuffer, width, height, 0x1000000 * 60);
 		}
 
@@ -310,10 +319,7 @@ void systemRenderFrame()
 	if (textMethod == 0) // transparent text can only be painted once, so timed messages will not be updated
 	{
 		int pitch = theApp.filterWidth * (systemColorDepth / 8) + (systemColorDepth == 24 ? 0 : 4);
-		int copyW, copyH;
-		systemGetLCDResolution(copyW, copyH);
-		systemRenderLua(&pix[pitch], pitch);
-		DrawTextMessages(&pix[pitch], pitch, 0, copyH);
+		systemRenderLua(pix, pitch);
 	}
 
 	VBAUpdateFrameCountDisplay();

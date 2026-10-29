@@ -1,0 +1,17 @@
+/build/
+/dist/
+/.local/
+/.userdata/
+/win32/.VS2010/
+/win32/__*bins/
+/win32/userconfig/svnrev.h
+/tools/__pycache__/
+/tests/__pycache__/
+*.bak
+*.log
+*.user
+*.suo
+.vs/
+.env
+.env.*
+!.env.example

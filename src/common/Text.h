@@ -7,6 +7,9 @@
 
 extern void drawText(u8 *, int, int, int, const char *, const char*cl = NULL);
 extern void drawTextTransp(u8 *, int, int, int, const char *, const char*cl = NULL);
+// Returns true when a non-ASCII status message was handled.
+extern bool drawTextMultibyte(u8 *, int pitch, int x, int y,
+                             int width, int height, const char *);
 
 extern bool outlinedText, transparentText;
 extern int  textColor, textMethod;

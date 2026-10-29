@@ -5,6 +5,7 @@
 #include "MainWnd.h"
 #include "Reg.h"
 #include "VBA.h"
+#include "ClearOverlay.h"
 
 #include "../gba/GBAGlobals.h"
 #include "../gb/gbGlobals.h"
@@ -230,11 +231,6 @@ void GDIDisplay::render()
 				     buffer);
 	}
 
-	if (textMethod == 1)
-	{
-		DrawTextMessages((u8 *)filterData, filterPitch, theApp.rect.left, theApp.rect.bottom);
-	}
-
 	POINT p;
 	p.x = theApp.dest.left;
 	p.y = theApp.dest.top;
@@ -251,9 +247,34 @@ void GDIDisplay::render()
 	bi->bmiHeader.biWidth = rectWidth;
 	bi->bmiHeader.biHeight = -rectHeight;
 
-	StretchDIBits((HDC)*dc,
-	              p.x,
-	              p.y,
+	struct PresentBuffer
+	{
+		HDC dc;
+		HBITMAP bitmap;
+		HGDIOBJ previous;
+		int width, height;
+		PresentBuffer() : dc(CreateCompatibleDC(NULL)), bitmap(NULL), previous(NULL), width(0), height(0) {}
+		~PresentBuffer() { if (previous) SelectObject(dc, previous); if (bitmap) DeleteObject(bitmap); if (dc) DeleteDC(dc); }
+		bool resize(HDC target, int w, int h)
+		{
+			if (!dc || w <= 0 || h <= 0) return false;
+			if (bitmap && w == width && h == height) return true;
+			HBITMAP next = CreateCompatibleBitmap(target, w, h);
+			if (!next) return false;
+			HGDIOBJ old = SelectObject(dc, next);
+			if (!old || old == HGDI_ERROR) { DeleteObject(next); return false; }
+			if (!previous) previous = old;
+			if (bitmap) DeleteObject(bitmap);
+			bitmap = next; width = w; height = h;
+			return true;
+		}
+	};
+	static PresentBuffer present;
+	bool buffered = winHasClearOverlay() && present.resize(dc->GetSafeHdc(), p2.x - p.x, p2.y - p.y);
+	HDC target = buffered ? present.dc : dc->GetSafeHdc();
+	StretchDIBits(target,
+	              buffered ? 0 : p.x,
+	              buffered ? 0 : p.y,
 	              p2.x - p.x,
 	              p2.y - p.y,
 	              0,
@@ -265,62 +286,12 @@ void GDIDisplay::render()
 	              DIB_RGB_COLORS,
 	              SRCCOPY);
 
-	if (textMethod == 2)
-		for (int slot = 0; slot < SCREEN_MESSAGE_SLOTS; slot++)
-		{
-			if (theApp.screenMessage[slot])
-			{
-				if ((theApp.screenMessageDuration[slot] < 0 || 
-					(int)(GetTickCount() - theApp.screenMessageTime[slot]) < theApp.screenMessageDuration[slot]) &&
-				    (!theApp.disableStatusMessage || slot == 1 || slot == 2))
-				{
-					dc->SetBkMode(TRANSPARENT);
-
-					if (outlinedText)
-					{
-						dc->SetTextColor(textColor != 7 ? RGB(0, 0, 0) : RGB(255, 255, 255));
-
-						// draw black outline
-						const static int xd [8] = {-1, 0, 1, 1, 1, 0, -1, -1};
-						const static int yd [8] = {-1, -1, -1, 0, 1, 1, 1, 0};
-						for (int i = 0; i < 8; i++)
-						{
-							dc->TextOut(p.x+10+xd[i], p2.y - 20*(slot+1)+yd[i], theApp.screenMessageBuffer[slot]);
-						}
-					}
-
-					COLORREF color;
-					switch (textColor)
-					{
-					case 0:
-						color = RGB(255, 255, 255); break;
-					case 1:
-						color = RGB(255, 0, 0); break;
-					case 2:
-						color = RGB(255, 255, 0); break;
-					case 3:
-						color = RGB(0, 255, 0); break;
-					case 4:
-						color = RGB(0, 255, 255); break;
-					case 5:
-						color = RGB(0, 0, 255); break;
-					case 6:
-						color = RGB(255, 0, 255); break;
-					case 7:
-						color = RGB(0, 0, 0); break;
-					}
-					dc->SetTextColor(color);
-
-					// draw center text
-					dc->TextOut(p.x+10, p2.y - 20*(slot+1), theApp.screenMessageBuffer[slot]);
-				}
-				else
-				{
-					theApp.screenMessage[slot] = false;
-				}
-			}
-		}
-
+	if (buffered)
+	{
+		RECT overlayDestination = { 0, 0, p2.x - p.x, p2.y - p.y };
+		winDrawClearOverlay(present.dc, overlayDestination);
+		BitBlt(dc->GetSafeHdc(), p.x, p.y, p2.x - p.x, p2.y - p.y, present.dc, 0, 0, SRCCOPY);
+	}
 	pWnd->ReleaseDC(dc);
 }
 

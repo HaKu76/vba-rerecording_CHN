@@ -1,0 +1,6712 @@
+{
+  "dialogs": {
+    "505": {
+      "caption": "关于VBA rerecording",
+      "controls": [
+        {
+          "id": 1,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": 451
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "VisualBoyAdvance Emulator"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Copyright (c) 2004 Forgotten and the VBA team"
+        },
+        {
+          "id": 1187,
+          "class": 130,
+          "text": "http://code.google.com/p/vba-rerecording/"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Contribution by Costis"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Version"
+        },
+        {
+          "id": 1419,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Re-recording additions by VBA-rr team"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "汉化：Hakuhiro/白希洛"
+        }
+      ]
+    },
+    "507": {
+      "caption": "搜索作弊码",
+      "controls": [
+        {
+          "id": 1023,
+          "class": "SysListView32",
+          "text": ""
+        },
+        {
+          "id": 1026,
+          "class": 128,
+          "text": "旧数值"
+        },
+        {
+          "id": 1027,
+          "class": 128,
+          "text": "特定值"
+        },
+        {
+          "id": 1028,
+          "class": 128,
+          "text": "&8 位"
+        },
+        {
+          "id": 1029,
+          "class": 128,
+          "text": "&16 位"
+        },
+        {
+          "id": 1030,
+          "class": 128,
+          "text": "&32 位"
+        },
+        {
+          "id": 1031,
+          "class": 128,
+          "text": "等于"
+        },
+        {
+          "id": 1032,
+          "class": 128,
+          "text": "不等于"
+        },
+        {
+          "id": 1033,
+          "class": 128,
+          "text": "少于"
+        },
+        {
+          "id": 1034,
+          "class": 128,
+          "text": "少或等于"
+        },
+        {
+          "id": 1035,
+          "class": 128,
+          "text": "大于"
+        },
+        {
+          "id": 1036,
+          "class": 128,
+          "text": "大或等于"
+        },
+        {
+          "id": 1037,
+          "class": 128,
+          "text": "有符号"
+        },
+        {
+          "id": 1038,
+          "class": 128,
+          "text": "无符号"
+        },
+        {
+          "id": 1040,
+          "class": 128,
+          "text": "十六进制"
+        },
+        {
+          "id": 1046,
+          "class": 128,
+          "text": "搜索并更新值"
+        },
+        {
+          "id": 1041,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1024,
+          "class": 128,
+          "text": "开始"
+        },
+        {
+          "id": 1025,
+          "class": 128,
+          "text": "搜索"
+        },
+        {
+          "id": 1440,
+          "class": 128,
+          "text": "新增作弊码"
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "搜索类型"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "数据大小"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "比较类型"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "有符号/无符号"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "输入特定值:"
+        },
+        {
+          "id": 1283,
+          "class": 128,
+          "text": "刷新新的值"
+        }
+      ]
+    },
+    "508": {
+      "caption": "新增作弊码",
+      "controls": [
+        {
+          "id": 1042,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1041,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1074,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1028,
+          "class": 128,
+          "text": "8-位"
+        },
+        {
+          "id": 1029,
+          "class": 128,
+          "text": "16-位"
+        },
+        {
+          "id": 1030,
+          "class": 128,
+          "text": "32-位"
+        },
+        {
+          "id": 1037,
+          "class": 128,
+          "text": "有符号"
+        },
+        {
+          "id": 1038,
+          "class": 128,
+          "text": "无符号"
+        },
+        {
+          "id": 1040,
+          "class": 128,
+          "text": "十六进制"
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "&OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "数值:"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "格式"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "地址:"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "大小"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "描述:"
+        }
+      ]
+    },
+    "509": {
+      "caption": "目录",
+      "controls": [
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "GBA ROM:"
+        },
+        {
+          "id": 1330,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1310,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1350,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "GBx ROM:"
+        },
+        {
+          "id": 1331,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1311,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1351,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Battery:"
+        },
+        {
+          "id": 1332,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1312,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1352,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Save Game:"
+        },
+        {
+          "id": 1333,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1313,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1353,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Movies:"
+        },
+        {
+          "id": 1334,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1314,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1354,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "作弊码:"
+        },
+        {
+          "id": 1335,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1315,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1355,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "IPS:"
+        },
+        {
+          "id": 1340,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1320,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1360,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Lua:"
+        },
+        {
+          "id": 1336,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1316,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1356,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "AVI:"
+        },
+        {
+          "id": 1337,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1317,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1357,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "WAV:"
+        },
+        {
+          "id": 1338,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1318,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1358,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "截图:"
+        },
+        {
+          "id": 1339,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1319,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1359,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Watch:"
+        },
+        {
+          "id": 1329,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1309,
+          "class": 128,
+          "text": "..."
+        },
+        {
+          "id": 1349,
+          "class": 128,
+          "text": "重置"
+        },
+        {
+          "id": 1,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 2,
+          "class": 128,
+          "text": "取消"
+        }
+      ]
+    },
+    "510": {
+      "caption": "键位设置",
+      "controls": [
+        {
+          "id": 1420,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1421,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1422,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1423,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1424,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1425,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1432,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1434,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1426,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1427,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1430,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1431,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1433,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "上"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "下"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "左"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "右"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "A"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "B"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "L"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Select"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Start"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Speed"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "截图"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "GameShark"
+        }
+      ]
+    },
+    "513": {
+      "caption": "作弊码列表",
+      "controls": [
+        {
+          "id": 1065,
+          "class": 128,
+          "text": "Restore &previous values"
+        },
+        {
+          "id": 1106,
+          "class": 128,
+          "text": "&Code..."
+        },
+        {
+          "id": 1440,
+          "class": 128,
+          "text": "C&heat..."
+        },
+        {
+          "id": 1445,
+          "class": 128,
+          "text": "&Gameshark..."
+        },
+        {
+          "id": 1107,
+          "class": 128,
+          "text": "CodeBreaker..."
+        },
+        {
+          "id": 1062,
+          "class": 128,
+          "text": "删除"
+        },
+        {
+          "id": 1063,
+          "class": 128,
+          "text": "删除所有"
+        },
+        {
+          "id": 1064,
+          "class": 128,
+          "text": "&Enable/Dis."
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "&OK"
+        },
+        {
+          "id": 1023,
+          "class": "SysListView32",
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Status legend:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "E: Enabled"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "D: Disabled"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "新增"
+        }
+      ]
+    },
+    "514": {
+      "caption": "Associations",
+      "controls": [
+        {
+          "id": 1069,
+          "class": 128,
+          "text": ".gb"
+        },
+        {
+          "id": 1070,
+          "class": 128,
+          "text": ".sgb"
+        },
+        {
+          "id": 1071,
+          "class": 128,
+          "text": ".cgb"
+        },
+        {
+          "id": 1072,
+          "class": 128,
+          "text": ".gbc"
+        },
+        {
+          "id": 1066,
+          "class": 128,
+          "text": ".gba"
+        },
+        {
+          "id": 1067,
+          "class": 128,
+          "text": ".agb"
+        },
+        {
+          "id": 1068,
+          "class": 128,
+          "text": ".bin"
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "GBA Types"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "GB Types"
+        }
+      ]
+    },
+    "516": {
+      "caption": "ROM信息",
+      "controls": [
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "游戏名:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "游戏代码:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "厂商代码:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "主单元代码:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "设备类型:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "ROM版本:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "CRC:"
+        },
+        {
+          "id": 1079,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1080,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1081,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1082,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1083,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1084,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1085,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1086,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "厂商名称:"
+        }
+      ]
+    },
+    "517": {
+      "caption": "ROM信息",
+      "controls": [
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "游戏名:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Maker code:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Unit code:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Cartridge type:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "ROM version:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "CRC:"
+        },
+        {
+          "id": 1079,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1081,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1082,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1083,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1084,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1085,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Color:"
+        },
+        {
+          "id": 1087,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "ROM size:"
+        },
+        {
+          "id": 1088,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "RAM size:"
+        },
+        {
+          "id": 1089,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Dest. code:"
+        },
+        {
+          "id": 1090,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "License code:"
+        },
+        {
+          "id": 1091,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Checksum:"
+        },
+        {
+          "id": 1092,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1093,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Maker name:"
+        }
+      ]
+    },
+    "518": {
+      "caption": "Gameboy Cheat List",
+      "controls": [
+        {
+          "id": 1023,
+          "class": "SysListView32",
+          "text": ""
+        },
+        {
+          "id": 1104,
+          "class": 128,
+          "text": "Add &GameGenie..."
+        },
+        {
+          "id": 1441,
+          "class": 128,
+          "text": "&Add GameShark..."
+        },
+        {
+          "id": 1062,
+          "class": 128,
+          "text": "删除"
+        },
+        {
+          "id": 1063,
+          "class": 128,
+          "text": "删除所有"
+        },
+        {
+          "id": 1064,
+          "class": 128,
+          "text": "&Enable/Dis."
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "&OK"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Status legend:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "E: Enabled"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "D: Disabled"
+        }
+      ]
+    },
+    "519": {
+      "caption": "Title",
+      "controls": [
+        {
+          "id": 1074,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1073,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "描述:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "代码:"
+        }
+      ]
+    },
+    "520": {
+      "caption": "GB打印",
+      "controls": [
+        {
+          "id": 1100,
+          "class": 128,
+          "text": "&1x"
+        },
+        {
+          "id": 1101,
+          "class": 128,
+          "text": "&2x"
+        },
+        {
+          "id": 1102,
+          "class": 128,
+          "text": "&3x"
+        },
+        {
+          "id": 1103,
+          "class": 128,
+          "text": "&4x"
+        },
+        {
+          "id": 32774,
+          "class": 128,
+          "text": "打印..."
+        },
+        {
+          "id": 32773,
+          "class": 128,
+          "text": "保存..."
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "关闭"
+        },
+        {
+          "id": 1094,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "打印尺寸"
+        }
+      ]
+    },
+    "521": {
+      "caption": "运动传感器",
+      "controls": [
+        {
+          "id": 1420,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1421,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1422,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1423,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "上:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "下:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "左:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "右:"
+        }
+      ]
+    },
+    "522": {
+      "caption": "语言设置",
+      "controls": [
+        {
+          "id": 1097,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "当前系统语言:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "输入语言名称 (3个字母):"
+        },
+        {
+          "id": 1098,
+          "class": 130,
+          "text": ""
+        }
+      ]
+    },
+    "523": {
+      "caption": "Select codes to import",
+      "controls": [
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 1099,
+          "class": 131,
+          "text": ""
+        }
+      ]
+    },
+    "524": {
+      "caption": "Open",
+      "controls": [
+        {
+          "id": 1090,
+          "class": 130,
+          "text": "File &name:"
+        },
+        {
+          "id": 1152,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1120,
+          "class": 131,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "&Folders:"
+        },
+        {
+          "id": 1088,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1121,
+          "class": 131,
+          "text": ""
+        },
+        {
+          "id": 1089,
+          "class": 130,
+          "text": "List files of &type:"
+        },
+        {
+          "id": 1136,
+          "class": 133,
+          "text": ""
+        },
+        {
+          "id": 1091,
+          "class": 130,
+          "text": "Dri&ves:"
+        },
+        {
+          "id": 1137,
+          "class": 133,
+          "text": ""
+        },
+        {
+          "id": 1,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 2,
+          "class": 128,
+          "text": "Cancel"
+        }
+      ]
+    },
+    "526": {
+      "caption": "图层查看器",
+      "controls": [
+        {
+          "id": 1113,
+          "class": 128,
+          "text": "帧 0"
+        },
+        {
+          "id": 1114,
+          "class": 128,
+          "text": "帧 1"
+        },
+        {
+          "id": 1115,
+          "class": 128,
+          "text": "BG0"
+        },
+        {
+          "id": 1116,
+          "class": 128,
+          "text": "BG1"
+        },
+        {
+          "id": 1117,
+          "class": 128,
+          "text": "BG2"
+        },
+        {
+          "id": 1118,
+          "class": 128,
+          "text": "BG3"
+        },
+        {
+          "id": 1188,
+          "class": 128,
+          "text": "拉伸以适应"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "自动更新"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "刷新"
+        },
+        {
+          "id": 1123,
+          "class": 128,
+          "text": "保存"
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "关闭"
+        },
+        {
+          "id": 1120,
+          "class": "VbaBitmapControl",
+          "text": "MapView"
+        },
+        {
+          "id": 1132,
+          "class": "VbaZoomControl",
+          "text": "Zoom"
+        },
+        {
+          "id": 1129,
+          "class": "VbaColorControl",
+          "text": "Color"
+        },
+        {
+          "id": 1043,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1044,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1045,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "帧"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "背景"
+        },
+        {
+          "id": 1222,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "模式:"
+        },
+        {
+          "id": 1143,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "图层库:"
+        },
+        {
+          "id": 1145,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "字符库:"
+        },
+        {
+          "id": 1147,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "大小:"
+        },
+        {
+          "id": 1149,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "颜色:"
+        },
+        {
+          "id": 1151,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "优先级:"
+        },
+        {
+          "id": 1153,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "马赛克:"
+        },
+        {
+          "id": 1154,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "溢出:"
+        },
+        {
+          "id": 1156,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "地址:"
+        },
+        {
+          "id": 1042,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "标题:"
+        },
+        {
+          "id": 1459,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "翻转:"
+        },
+        {
+          "id": 1457,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "调色板:"
+        },
+        {
+          "id": 1458,
+          "class": 130,
+          "text": ""
+        }
+      ]
+    },
+    "527": {
+      "caption": "Palette View",
+      "controls": [
+        {
+          "id": 1130,
+          "class": 128,
+          "text": "Save BG..."
+        },
+        {
+          "id": 1131,
+          "class": 128,
+          "text": "Save OBJ..."
+        },
+        {
+          "id": 1127,
+          "class": 128,
+          "text": "&Refresh"
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "&Close"
+        },
+        {
+          "id": 1042,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1043,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1044,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1045,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1041,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1129,
+          "class": "VbaColorControl",
+          "text": "Custom1"
+        },
+        {
+          "id": 1121,
+          "class": "VbaPaletteViewControl",
+          "text": "PaletteViewBG"
+        },
+        {
+          "id": 1122,
+          "class": "VbaPaletteViewControl",
+          "text": "PaletteViewBG"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Background"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Sprite"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Address:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "G:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "B:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Value:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Click on a color for more information"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        }
+      ]
+    },
+    "528": {
+      "caption": "Memory viewer",
+      "controls": [
+        {
+          "id": 1134,
+          "class": 133,
+          "text": ""
+        },
+        {
+          "id": 1136,
+          "class": 128,
+          "text": "8-bit"
+        },
+        {
+          "id": 1137,
+          "class": 128,
+          "text": "16-bit"
+        },
+        {
+          "id": 1138,
+          "class": 128,
+          "text": "32-bit"
+        },
+        {
+          "id": 1042,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1135,
+          "class": 128,
+          "text": "&Go"
+        },
+        {
+          "id": 1133,
+          "class": "VbaMemoryViewer",
+          "text": "Viewer"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "&Refresh"
+        },
+        {
+          "id": 1238,
+          "class": 128,
+          "text": "&Load..."
+        },
+        {
+          "id": 1123,
+          "class": 128,
+          "text": "&Save..."
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "&Close"
+        },
+        {
+          "id": 1234,
+          "class": 130,
+          "text": "Current address:"
+        },
+        {
+          "id": 1233,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1281,
+          "class": 128,
+          "text": "Decimal Display"
+        },
+        {
+          "id": 1282,
+          "class": 128,
+          "text": "Align to 16-byte"
+        }
+      ]
+    },
+    "530": {
+      "caption": "Oam Viewer",
+      "controls": [
+        {
+          "id": 1141,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1152,
+          "class": 132,
+          "text": ""
+        },
+        {
+          "id": 1188,
+          "class": 128,
+          "text": "Stretch to fit"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "&Refresh"
+        },
+        {
+          "id": 1123,
+          "class": 128,
+          "text": "&Save..."
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "&Close"
+        },
+        {
+          "id": 1139,
+          "class": "VbaBitmapControl",
+          "text": "MapView"
+        },
+        {
+          "id": 1140,
+          "class": "VbaZoomControl",
+          "text": "Zoom"
+        },
+        {
+          "id": 1129,
+          "class": "VbaColorControl",
+          "text": "Color"
+        },
+        {
+          "id": 1142,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1143,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1144,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1146,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1148,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1150,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1155,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1157,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1158,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1043,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1044,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1045,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Pos:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Mode:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Colors:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Pal:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Tile:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Prio:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Size:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Sprite:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Rot.:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Flags:"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        }
+      ]
+    },
+    "531": {
+      "caption": "Accelerator Editor",
+      "controls": [
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Commands:"
+        },
+        {
+          "id": 1183,
+          "class": 130,
+          "text": "Current Keys:"
+        },
+        {
+          "id": 1185,
+          "class": 130,
+          "text": "Enter new accelerator:"
+        },
+        {
+          "id": 1167,
+          "class": 130,
+          "text": "Static"
+        },
+        {
+          "id": 1184,
+          "class": 130,
+          "text": "Already assigned to:"
+        },
+        {
+          "id": 1375,
+          "class": 130,
+          "text": "(0 to disable, millisec)"
+        },
+        {
+          "id": 1186,
+          "class": 130,
+          "text": "Kill focus on timeout:"
+        },
+        {
+          "id": 1159,
+          "class": "SysTreeView32",
+          "text": ""
+        },
+        {
+          "id": 1164,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1372,
+          "class": "msctls_progress32",
+          "text": ""
+        },
+        {
+          "id": 1161,
+          "class": "SysListView32",
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "&OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "&Cancel"
+        },
+        {
+          "id": 1368,
+          "class": 128,
+          "text": "&Apply"
+        },
+        {
+          "id": 1162,
+          "class": 128,
+          "text": "&Insert"
+        },
+        {
+          "id": 1062,
+          "class": 128,
+          "text": "&Delete"
+        },
+        {
+          "id": 1370,
+          "class": 128,
+          "text": "&Replace"
+        },
+        {
+          "id": 1373,
+          "class": 129,
+          "text": ""
+        }
+      ]
+    },
+    "532": {
+      "caption": "碎片查看器",
+      "controls": [
+        {
+          "id": 1168,
+          "class": 128,
+          "text": "16"
+        },
+        {
+          "id": 1169,
+          "class": 128,
+          "text": "256"
+        },
+        {
+          "id": 1170,
+          "class": 128,
+          "text": "0x6000000"
+        },
+        {
+          "id": 1171,
+          "class": 128,
+          "text": "0x6004000"
+        },
+        {
+          "id": 1172,
+          "class": 128,
+          "text": "0x6008000"
+        },
+        {
+          "id": 1173,
+          "class": 128,
+          "text": "0x600C000"
+        },
+        {
+          "id": 1174,
+          "class": 128,
+          "text": "0x6010000"
+        },
+        {
+          "id": 1165,
+          "class": "msctls_trackbar32",
+          "text": "Slider1"
+        },
+        {
+          "id": 1188,
+          "class": 128,
+          "text": "拉伸以适应"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "刷新"
+        },
+        {
+          "id": 1123,
+          "class": 128,
+          "text": "保存..."
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "关闭"
+        },
+        {
+          "id": 1166,
+          "class": "VbaBitmapControl",
+          "text": "Custom1"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "颜色"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "字符库"
+        },
+        {
+          "id": 1132,
+          "class": "VbaZoomControl",
+          "text": "Zoom"
+        },
+        {
+          "id": 1129,
+          "class": "VbaColorControl",
+          "text": "Color"
+        },
+        {
+          "id": 1043,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1044,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1045,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "调色板:"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "自动更新"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "标题:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "地址:"
+        },
+        {
+          "id": 1221,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1042,
+          "class": 130,
+          "text": ""
+        }
+      ]
+    },
+    "533": {
+      "caption": "Gameboy Mono Colors",
+      "controls": [
+        {
+          "id": 1191,
+          "class": 128,
+          "text": "Default"
+        },
+        {
+          "id": 1192,
+          "class": 128,
+          "text": "User 1"
+        },
+        {
+          "id": 1193,
+          "class": 128,
+          "text": "User 2"
+        },
+        {
+          "id": 1251,
+          "class": 133,
+          "text": ""
+        },
+        {
+          "id": 1175,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1176,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1177,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1178,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1179,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1180,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1181,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1182,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1163,
+          "class": 128,
+          "text": "Reset"
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Background"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Sprite"
+        }
+      ]
+    },
+    "534": {
+      "caption": "Disassemble",
+      "controls": [
+        {
+          "id": 1199,
+          "class": 128,
+          "text": "Automatic"
+        },
+        {
+          "id": 1200,
+          "class": 128,
+          "text": "ARM"
+        },
+        {
+          "id": 1201,
+          "class": 128,
+          "text": "THUMB"
+        },
+        {
+          "id": 1042,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1135,
+          "class": 128,
+          "text": "Go"
+        },
+        {
+          "id": 1196,
+          "class": 131,
+          "text": ""
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "Refresh"
+        },
+        {
+          "id": 1021,
+          "class": 128,
+          "text": "Next"
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "Close"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R0:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R1:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R2:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R3:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R4:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R5:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R6:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R7:"
+        },
+        {
+          "id": 1000,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1001,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1002,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1003,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1004,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1005,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1006,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1007,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1008,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1009,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1010,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1011,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1012,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1013,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1014,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1015,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R8:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R9:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R10:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R11:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R12:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R13:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R14:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R15:"
+        },
+        {
+          "id": 1016,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R16:"
+        },
+        {
+          "id": 1210,
+          "class": 128,
+          "text": "N"
+        },
+        {
+          "id": 1211,
+          "class": 128,
+          "text": "Z"
+        },
+        {
+          "id": 1212,
+          "class": 128,
+          "text": "C"
+        },
+        {
+          "id": 1213,
+          "class": 128,
+          "text": "V"
+        },
+        {
+          "id": 1214,
+          "class": 128,
+          "text": "F"
+        },
+        {
+          "id": 1215,
+          "class": 128,
+          "text": "I"
+        },
+        {
+          "id": 1216,
+          "class": 128,
+          "text": "T"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Mode:"
+        },
+        {
+          "id": 1143,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1218,
+          "class": 132,
+          "text": ""
+        },
+        {
+          "id": 1124,
+          "class": 128,
+          "text": "Goto R15"
+        }
+      ]
+    },
+    "535": {
+      "caption": "GDB端口配置",
+      "controls": [
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Port to wait for connection:"
+        },
+        {
+          "id": 1217,
+          "class": 129,
+          "text": ""
+        }
+      ]
+    },
+    "536": {
+      "caption": "请等待...",
+      "controls": [
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Waiting for connection on port:"
+        },
+        {
+          "id": 1217,
+          "class": 130,
+          "text": ""
+        }
+      ]
+    },
+    "537": {
+      "caption": "正在记录日志",
+      "controls": [
+        {
+          "id": 1223,
+          "class": 128,
+          "text": "SWI"
+        },
+        {
+          "id": 1224,
+          "class": 128,
+          "text": "未校准的内存"
+        },
+        {
+          "id": 1225,
+          "class": 128,
+          "text": "非法写入"
+        },
+        {
+          "id": 1226,
+          "class": 128,
+          "text": "非法读取"
+        },
+        {
+          "id": 1227,
+          "class": 128,
+          "text": "DMA 0"
+        },
+        {
+          "id": 1228,
+          "class": 128,
+          "text": "DMA 1"
+        },
+        {
+          "id": 1229,
+          "class": 128,
+          "text": "DMA 2"
+        },
+        {
+          "id": 1230,
+          "class": 128,
+          "text": "DMA 3"
+        },
+        {
+          "id": 1231,
+          "class": 128,
+          "text": "未定义指令"
+        },
+        {
+          "id": 1232,
+          "class": 128,
+          "text": "AGB打印"
+        },
+        {
+          "id": 1219,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1123,
+          "class": 128,
+          "text": "保存..."
+        },
+        {
+          "id": 1220,
+          "class": 128,
+          "text": "清除"
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "冗余"
+        }
+      ]
+    },
+    "538": {
+      "caption": "Export Gameshark Snapshot",
+      "controls": [
+        {
+          "id": 1235,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1074,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1236,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Title:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Description:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Notes:"
+        }
+      ]
+    },
+    "539": {
+      "caption": "Enter address and size",
+      "controls": [
+        {
+          "id": 1042,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1239,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Address:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Size:"
+        }
+      ]
+    },
+    "540": {
+      "caption": "Select video mode",
+      "controls": [
+        {
+          "id": 1240,
+          "class": 131,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Available video modes:"
+        }
+      ]
+    },
+    "542": {
+      "caption": "Select video driver",
+      "controls": [
+        {
+          "id": 1241,
+          "class": 131,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Available drivers:"
+        }
+      ]
+    },
+    "543": {
+      "caption": "Throttle",
+      "controls": [
+        {
+          "id": 1242,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Enter desired throttle (1%...1000%):"
+        }
+      ]
+    },
+    "544": {
+      "caption": "GB Disassemble",
+      "controls": [
+        {
+          "id": 1042,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1135,
+          "class": 128,
+          "text": "Go"
+        },
+        {
+          "id": 1196,
+          "class": 131,
+          "text": ""
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "Refresh"
+        },
+        {
+          "id": 1021,
+          "class": 128,
+          "text": "Next"
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "Close"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "AF:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "BC:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "DE:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "HL:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "IFF:"
+        },
+        {
+          "id": 1000,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1001,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1002,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1003,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1006,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1210,
+          "class": 128,
+          "text": "N"
+        },
+        {
+          "id": 1211,
+          "class": 128,
+          "text": "Z"
+        },
+        {
+          "id": 1212,
+          "class": 128,
+          "text": "C"
+        },
+        {
+          "id": 1243,
+          "class": 128,
+          "text": "H"
+        },
+        {
+          "id": 1218,
+          "class": 132,
+          "text": ""
+        },
+        {
+          "id": 1124,
+          "class": 128,
+          "text": "Goto PC"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "SP:"
+        },
+        {
+          "id": 1004,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "PC:"
+        },
+        {
+          "id": 1005,
+          "class": 130,
+          "text": ""
+        }
+      ]
+    },
+    "545": {
+      "caption": "GB Oam Viewer",
+      "controls": [
+        {
+          "id": 1141,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1152,
+          "class": 132,
+          "text": ""
+        },
+        {
+          "id": 1188,
+          "class": 128,
+          "text": "Stretch to fit"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "&Refresh"
+        },
+        {
+          "id": 1123,
+          "class": 128,
+          "text": "&Save..."
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "&Close"
+        },
+        {
+          "id": 1139,
+          "class": "VbaBitmapControl",
+          "text": "MapView"
+        },
+        {
+          "id": 1140,
+          "class": "VbaZoomControl",
+          "text": "Zoom"
+        },
+        {
+          "id": 1129,
+          "class": "VbaColorControl",
+          "text": "Color"
+        },
+        {
+          "id": 1142,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1146,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1148,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1150,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1244,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1158,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1043,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1044,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1045,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Pos:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Pal:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Tile:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Prio:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "OAP:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Sprite:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Flags:"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        },
+        {
+          "id": 1160,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Bank:"
+        }
+      ]
+    },
+    "546": {
+      "caption": "GB Tile Viewer",
+      "controls": [
+        {
+          "id": 1245,
+          "class": 128,
+          "text": "0"
+        },
+        {
+          "id": 1246,
+          "class": 128,
+          "text": "1"
+        },
+        {
+          "id": 1170,
+          "class": 128,
+          "text": "0x8000"
+        },
+        {
+          "id": 1171,
+          "class": 128,
+          "text": "0x8800"
+        },
+        {
+          "id": 1188,
+          "class": 128,
+          "text": "Stretch to fit"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "Refresh"
+        },
+        {
+          "id": 1123,
+          "class": 128,
+          "text": "Save..."
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "Close"
+        },
+        {
+          "id": 1166,
+          "class": "VbaBitmapControl",
+          "text": "Custom1"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "VRAM Bank"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Char Base"
+        },
+        {
+          "id": 1132,
+          "class": "VbaZoomControl",
+          "text": "Zoom"
+        },
+        {
+          "id": 1129,
+          "class": "VbaColorControl",
+          "text": "Color"
+        },
+        {
+          "id": 1043,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1044,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1045,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Palette:"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Tile:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Address:"
+        },
+        {
+          "id": 1221,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1042,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1165,
+          "class": "msctls_trackbar32",
+          "text": "Slider1"
+        }
+      ]
+    },
+    "547": {
+      "caption": "GB Map Viewer",
+      "controls": [
+        {
+          "id": 1245,
+          "class": 128,
+          "text": "0x8000"
+        },
+        {
+          "id": 1246,
+          "class": 128,
+          "text": "0x8800"
+        },
+        {
+          "id": 1115,
+          "class": 128,
+          "text": "0x9800"
+        },
+        {
+          "id": 1116,
+          "class": 128,
+          "text": "0x9C00"
+        },
+        {
+          "id": 1188,
+          "class": 128,
+          "text": "Stretch to fit"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "&Refresh"
+        },
+        {
+          "id": 1123,
+          "class": 128,
+          "text": "&Save..."
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "&Close"
+        },
+        {
+          "id": 1120,
+          "class": "VbaBitmapControl",
+          "text": "MapView"
+        },
+        {
+          "id": 1132,
+          "class": "VbaZoomControl",
+          "text": "Zoom"
+        },
+        {
+          "id": 1129,
+          "class": "VbaColorControl",
+          "text": "Color"
+        },
+        {
+          "id": 1043,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1044,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1045,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Char Base"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Map Base"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Auto update"
+        },
+        {
+          "id": 1222,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Priority:"
+        },
+        {
+          "id": 1153,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Address:"
+        },
+        {
+          "id": 1042,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Tile:"
+        },
+        {
+          "id": 1459,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Flip:"
+        },
+        {
+          "id": 1457,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Palette:"
+        },
+        {
+          "id": 1458,
+          "class": 130,
+          "text": ""
+        }
+      ]
+    },
+    "548": {
+      "caption": "GB Palette Viewer",
+      "controls": [
+        {
+          "id": 1130,
+          "class": 128,
+          "text": "Save BG..."
+        },
+        {
+          "id": 1131,
+          "class": 128,
+          "text": "Save OBJ..."
+        },
+        {
+          "id": 1127,
+          "class": 128,
+          "text": "&Refresh"
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "&Close"
+        },
+        {
+          "id": 1042,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1043,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1044,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1045,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1041,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1129,
+          "class": "VbaColorControl",
+          "text": "Custom1"
+        },
+        {
+          "id": 1121,
+          "class": "VbaPaletteViewControl",
+          "text": "PaletteViewBG"
+        },
+        {
+          "id": 1122,
+          "class": "VbaPaletteViewControl",
+          "text": "PaletteViewBG"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "BG"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Sprite"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Index:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "R:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "G:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "B:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Value:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Click on a color for more information"
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        }
+      ]
+    },
+    "549": {
+      "caption": "Confirm mode",
+      "controls": [
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Do you want to keep the current mode?"
+        },
+        {
+          "id": 1247,
+          "class": 130,
+          "text": ""
+        }
+      ]
+    },
+    "550": {
+      "caption": "回退设置",
+      "controls": [
+        {
+          "id": 1248,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "输入回退间隔（0.2 ... 600）秒:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "或输入0以禁用回退."
+        },
+        {
+          "id": 1249,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "输入回退插槽数量（1...256）"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "或输入0以禁用回退."
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "若启用，文件->回退将回退状态<interval>秒，最多回退<slots>个间隔."
+        }
+      ]
+    },
+    "551": {
+      "caption": "I/O Viewer",
+      "controls": [
+        {
+          "id": 1134,
+          "class": 133,
+          "text": ""
+        },
+        {
+          "id": 1041,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 1395,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1394,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1393,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1392,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1391,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1390,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1389,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1388,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1387,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1386,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1385,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1384,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1383,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1382,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1381,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1380,
+          "class": 128,
+          "text": ""
+        },
+        {
+          "id": 1204,
+          "class": 128,
+          "text": "Automatic update"
+        },
+        {
+          "id": 1126,
+          "class": 128,
+          "text": "&Refresh"
+        },
+        {
+          "id": 1125,
+          "class": 128,
+          "text": "&Apply"
+        },
+        {
+          "id": 1128,
+          "class": 128,
+          "text": "&Close"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Value:"
+        }
+      ]
+    },
+    "554": {
+      "caption": "Fullscreen scale",
+      "controls": [
+        {
+          "id": 1041,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Enter the maxium fullscreen scale:"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Enter 0 to use maximum scale."
+        }
+      ]
+    },
+    "555": {
+      "caption": "Bug Report",
+      "controls": [
+        {
+          "id": 32771,
+          "class": 128,
+          "text": "&OK"
+        },
+        {
+          "id": 1252,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "Bug report data:"
+        },
+        {
+          "id": 1253,
+          "class": 128,
+          "text": "&Copy"
+        }
+      ]
+    },
+    "556": {
+      "caption": "Record Movie",
+      "controls": [
+        {
+          "id": 1,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 2,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 1408,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Movie File"
+        },
+        {
+          "id": 1254,
+          "class": 128,
+          "text": "&Browse..."
+        },
+        {
+          "id": 1399,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Author:"
+        },
+        {
+          "id": 1400,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Description:"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Game System"
+        },
+        {
+          "id": 1257,
+          "class": 128,
+          "text": "Game Boy Advance"
+        },
+        {
+          "id": 1258,
+          "class": 128,
+          "text": "Game Boy Color"
+        },
+        {
+          "id": 1259,
+          "class": 128,
+          "text": "Super Game Boy"
+        },
+        {
+          "id": 1261,
+          "class": 128,
+          "text": "Game Boy"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Bios Settings"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Record Options"
+        },
+        {
+          "id": 1401,
+          "class": 128,
+          "text": "From now (snapshot)"
+        },
+        {
+          "id": 1402,
+          "class": 128,
+          "text": "From reset (SRAM)"
+        },
+        {
+          "id": 1403,
+          "class": 128,
+          "text": "From start (power-on)"
+        },
+        {
+          "id": 1404,
+          "class": 128,
+          "text": "No BIOS"
+        },
+        {
+          "id": 1405,
+          "class": 128,
+          "text": "Emulator's BIOS"
+        },
+        {
+          "id": 1406,
+          "class": 128,
+          "text": "GBA BIOS"
+        },
+        {
+          "id": 1407,
+          "class": 128,
+          "text": "GBA BIOS with intro"
+        }
+      ]
+    },
+    "557": {
+      "caption": "Play Movie",
+      "controls": [
+        {
+          "id": 1,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 2,
+          "class": 128,
+          "text": "Cancel"
+        },
+        {
+          "id": 1408,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Movie File"
+        },
+        {
+          "id": 1254,
+          "class": 128,
+          "text": "&Browse..."
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Recording Date:"
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Length:"
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Frames:"
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Re-record Count:"
+        },
+        {
+          "id": 1410,
+          "class": 130,
+          "text": "DATE"
+        },
+        {
+          "id": 1411,
+          "class": 130,
+          "text": "LENGTH"
+        },
+        {
+          "id": 1412,
+          "class": 130,
+          "text": "FRAMES"
+        },
+        {
+          "id": 1413,
+          "class": 130,
+          "text": "RERECORD"
+        },
+        {
+          "id": 1398,
+          "class": 128,
+          "text": "Open Read-Only"
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Press OK to start playing the movie.\nNote that this will erase or overwrite your game's SRAM,\nand may change other emulator settings."
+        },
+        {
+          "id": 1416,
+          "class": 130,
+          "text": "Movie ROM: ..."
+        },
+        {
+          "id": 1417,
+          "class": 130,
+          "text": "Your ROM: ..."
+        },
+        {
+          "id": 1399,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Author:"
+        },
+        {
+          "id": 1400,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Description:"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Game System"
+        },
+        {
+          "id": 1257,
+          "class": 128,
+          "text": "Game Boy Advance"
+        },
+        {
+          "id": 1258,
+          "class": 128,
+          "text": "Game Boy Color"
+        },
+        {
+          "id": 1259,
+          "class": 128,
+          "text": "Super Game Boy"
+        },
+        {
+          "id": 1261,
+          "class": 128,
+          "text": "Game Boy"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Record Options"
+        },
+        {
+          "id": 1401,
+          "class": 128,
+          "text": "From snapshot"
+        },
+        {
+          "id": 1402,
+          "class": 128,
+          "text": "From reset/SRAM"
+        },
+        {
+          "id": 1403,
+          "class": 128,
+          "text": "From power-on"
+        },
+        {
+          "id": 1404,
+          "class": 128,
+          "text": "No BIOS"
+        },
+        {
+          "id": 1405,
+          "class": 128,
+          "text": "Emulator's BIOS"
+        },
+        {
+          "id": 1406,
+          "class": 128,
+          "text": "GBA BIOS"
+        },
+        {
+          "id": 1407,
+          "class": 128,
+          "text": "GBA BIOS with intro"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Bios Settings"
+        },
+        {
+          "id": 1409,
+          "class": 128,
+          "text": "&Refresh"
+        },
+        {
+          "id": 1262,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1263,
+          "class": 128,
+          "text": "Pause at frame:"
+        },
+        {
+          "id": 1265,
+          "class": 128,
+          "text": "Hide SGB Border"
+        }
+      ]
+    },
+    "558": {
+      "caption": "文本设置",
+      "controls": [
+        {
+          "id": 1,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 2,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "颜色"
+        },
+        {
+          "id": 1266,
+          "class": 128,
+          "text": "White"
+        },
+        {
+          "id": 1267,
+          "class": 128,
+          "text": "Red"
+        },
+        {
+          "id": 1268,
+          "class": 128,
+          "text": "Yellow"
+        },
+        {
+          "id": 1269,
+          "class": 128,
+          "text": "Green"
+        },
+        {
+          "id": 1270,
+          "class": 128,
+          "text": "Cyan"
+        },
+        {
+          "id": 1271,
+          "class": 128,
+          "text": "Blue"
+        },
+        {
+          "id": 1272,
+          "class": 128,
+          "text": "Magenta"
+        },
+        {
+          "id": 1273,
+          "class": 128,
+          "text": "Black"
+        },
+        {
+          "id": 1274,
+          "class": 128,
+          "text": "Outlined"
+        },
+        {
+          "id": 1275,
+          "class": 128,
+          "text": "Transparent"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Mode"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Display"
+        },
+        {
+          "id": 1276,
+          "class": 128,
+          "text": "In Game"
+        },
+        {
+          "id": 1277,
+          "class": 128,
+          "text": "On Game"
+        },
+        {
+          "id": 1278,
+          "class": 128,
+          "text": "On Screen"
+        }
+      ]
+    },
+    "559": {
+      "caption": "Lua脚本",
+      "controls": [
+        {
+          "id": 1286,
+          "class": 128,
+          "text": "打开"
+        },
+        {
+          "id": 1362,
+          "class": 128,
+          "text": "运行"
+        },
+        {
+          "id": 1363,
+          "class": 128,
+          "text": "停止"
+        },
+        {
+          "id": 1285,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1364,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "输出控制台"
+        },
+        {
+          "id": 65535,
+          "class": 130,
+          "text": "脚本路径"
+        },
+        {
+          "id": 1365,
+          "class": 128,
+          "text": "编辑"
+        }
+      ]
+    },
+    "560": {
+      "caption": "Choose File",
+      "controls": [
+        {
+          "id": 1,
+          "class": 128,
+          "text": "&OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 1361,
+          "class": 131,
+          "text": ""
+        }
+      ]
+    },
+    "561": {
+      "caption": " RAM Search",
+      "controls": [
+        {
+          "id": 41133,
+          "class": "SysListView32",
+          "text": ""
+        },
+        {
+          "id": 41134,
+          "class": 128,
+          "text": "&Search"
+        },
+        {
+          "id": 41135,
+          "class": 128,
+          "text": "&Add Cheat"
+        },
+        {
+          "id": 41139,
+          "class": 128,
+          "text": "&Watch"
+        },
+        {
+          "id": 41136,
+          "class": 128,
+          "text": "&Reset"
+        },
+        {
+          "id": 42174,
+          "class": 128,
+          "text": "&Eliminate"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Comparison Operator"
+        },
+        {
+          "id": 41141,
+          "class": 128,
+          "text": "Less Than"
+        },
+        {
+          "id": 41142,
+          "class": 128,
+          "text": "Greater Than"
+        },
+        {
+          "id": 41143,
+          "class": 128,
+          "text": "Less Than or Equal To"
+        },
+        {
+          "id": 41144,
+          "class": 128,
+          "text": "Greater Than or Equal To"
+        },
+        {
+          "id": 41145,
+          "class": 128,
+          "text": "Equal To"
+        },
+        {
+          "id": 41146,
+          "class": 128,
+          "text": "Not Equal To"
+        },
+        {
+          "id": 41147,
+          "class": 128,
+          "text": "Different By:"
+        },
+        {
+          "id": 41148,
+          "class": 128,
+          "text": "Modulo"
+        },
+        {
+          "id": 41093,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 41095,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Compare To / By"
+        },
+        {
+          "id": 42147,
+          "class": 128,
+          "text": "Previous Value"
+        },
+        {
+          "id": 42148,
+          "class": 128,
+          "text": "Specific Value:"
+        },
+        {
+          "id": 42157,
+          "class": 128,
+          "text": "Specific Address:"
+        },
+        {
+          "id": 42158,
+          "class": 128,
+          "text": "Number of Changes:"
+        },
+        {
+          "id": 41090,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 41091,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 41092,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Data Type / Display"
+        },
+        {
+          "id": 1037,
+          "class": 128,
+          "text": "Signed"
+        },
+        {
+          "id": 1038,
+          "class": 128,
+          "text": "Unsigned"
+        },
+        {
+          "id": 41151,
+          "class": 128,
+          "text": "Hexadecimal"
+        },
+        {
+          "id": 41094,
+          "class": 128,
+          "text": "Autosearch"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Data Size"
+        },
+        {
+          "id": 41137,
+          "class": 128,
+          "text": "1 byte"
+        },
+        {
+          "id": 41138,
+          "class": 128,
+          "text": "2 bytes"
+        },
+        {
+          "id": 41140,
+          "class": 128,
+          "text": "4 bytes"
+        },
+        {
+          "id": 42159,
+          "class": 128,
+          "text": "Check Misaligned"
+        },
+        {
+          "id": 41153,
+          "class": 128,
+          "text": "&Clear Change Counts"
+        },
+        {
+          "id": 41152,
+          "class": 128,
+          "text": "&Undo"
+        },
+        {
+          "id": 4294967295,
+          "class": 130,
+          "text": "Is"
+        }
+      ]
+    },
+    "562": {
+      "caption": " Edit Watch",
+      "controls": [
+        {
+          "id": 42157,
+          "class": 130,
+          "text": "Address:"
+        },
+        {
+          "id": 41091,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 43410,
+          "class": 130,
+          "text": "Notes:"
+        },
+        {
+          "id": 43412,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Data Type"
+        },
+        {
+          "id": 1037,
+          "class": 128,
+          "text": "&Signed"
+        },
+        {
+          "id": 1038,
+          "class": 128,
+          "text": "&Unsigned"
+        },
+        {
+          "id": 41151,
+          "class": 128,
+          "text": "&Hexadecimal"
+        },
+        {
+          "id": 65535,
+          "class": 128,
+          "text": "Data Size"
+        },
+        {
+          "id": 41137,
+          "class": 128,
+          "text": "&1 byte"
+        },
+        {
+          "id": 41138,
+          "class": 128,
+          "text": "&2 bytes"
+        },
+        {
+          "id": 41140,
+          "class": 128,
+          "text": "&4 bytes"
+        },
+        {
+          "id": 1,
+          "class": 128,
+          "text": "&OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        }
+      ]
+    },
+    "563": {
+      "caption": " RAM Watch",
+      "controls": [
+        {
+          "id": 42171,
+          "class": "SysListView32",
+          "text": ""
+        },
+        {
+          "id": 43402,
+          "class": 128,
+          "text": "&Edit"
+        },
+        {
+          "id": 43403,
+          "class": 128,
+          "text": "&Remove"
+        },
+        {
+          "id": 41139,
+          "class": 128,
+          "text": "&New"
+        },
+        {
+          "id": 43401,
+          "class": 128,
+          "text": "Duplic&ate"
+        },
+        {
+          "id": 41135,
+          "class": 128,
+          "text": "Add &Cheat"
+        },
+        {
+          "id": 4294967295,
+          "class": 128,
+          "text": "Watches"
+        },
+        {
+          "id": 40670,
+          "class": "msctls_updown32",
+          "text": ""
+        },
+        {
+          "id": 43405,
+          "class": 128,
+          "text": "Separator"
+        }
+      ]
+    },
+    "564": {
+      "caption": "Input Prompt",
+      "controls": [
+        {
+          "id": 43412,
+          "class": 129,
+          "text": ""
+        },
+        {
+          "id": 1,
+          "class": 128,
+          "text": "OK"
+        },
+        {
+          "id": 32772,
+          "class": 128,
+          "text": "取消"
+        },
+        {
+          "id": 43410,
+          "class": 130,
+          "text": ""
+        },
+        {
+          "id": 43411,
+          "class": 130,
+          "text": ""
+        }
+      ]
+    }
+  },
+  "menus": {
+    "LUAWINDOW_MENU": [
+      {
+        "id": null,
+        "text": "控制台"
+      },
+      {
+        "id": 1367,
+        "text": "&字体..."
+      },
+      {
+        "id": 1366,
+        "text": "清空"
+      }
+    ],
+    "RAMWATCH_MENU": [
+      {
+        "id": null,
+        "text": "&File"
+      },
+      {
+        "id": 42303,
+        "text": "&New List\tCtrl+N"
+      },
+      {
+        "id": 42304,
+        "text": "&打开...\tCtrl+O"
+      },
+      {
+        "id": 42305,
+        "text": "&保存\tCtrl+S"
+      },
+      {
+        "id": 42306,
+        "text": "Sa&ve As...\tCtrl+Shift+S"
+      },
+      {
+        "id": 42301,
+        "text": "&Append File..."
+      },
+      {
+        "id": 42307,
+        "text": "&Recent"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 42300,
+        "text": "Auto-&Load"
+      },
+      {
+        "id": 42302,
+        "text": "Save &Window Position"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 2,
+        "text": "&关闭\tAlt+F4"
+      },
+      {
+        "id": null,
+        "text": "&Watches"
+      },
+      {
+        "id": 41139,
+        "text": "&New Watch\tN"
+      },
+      {
+        "id": 43402,
+        "text": "&Edit Watch\tE"
+      },
+      {
+        "id": 43403,
+        "text": "&Remove Watch\tR"
+      },
+      {
+        "id": 43401,
+        "text": "Duplic&ate Watch\tA"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 43404,
+        "text": "Move &Up\tU"
+      },
+      {
+        "id": 43400,
+        "text": "Move &Down\tD"
+      }
+    ],
+    "401": [
+      {
+        "id": null,
+        "text": "&文件"
+      },
+      {
+        "id": 57601,
+        "text": "&打开GBA..."
+      },
+      {
+        "id": 40135,
+        "text": "&打开GBx..."
+      },
+      {
+        "id": null,
+        "text": "最近&打开的文件"
+      },
+      {
+        "id": 40109,
+        "text": "&清空列表"
+      },
+      {
+        "id": 40162,
+        "text": "&冻结列表"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 57616,
+        "text": "打开最近使用的ROM #&1"
+      },
+      {
+        "id": 57617,
+        "text": "打开最近使用的ROM #&2"
+      },
+      {
+        "id": 57618,
+        "text": "打开最近使用的ROM #&3"
+      },
+      {
+        "id": 57619,
+        "text": "打开最近使用的ROM #&4"
+      },
+      {
+        "id": 57620,
+        "text": "打开最近使用的ROM #&5"
+      },
+      {
+        "id": 57621,
+        "text": "打开最近使用的ROM #&6"
+      },
+      {
+        "id": 57622,
+        "text": "打开最近使用的ROM #&7"
+      },
+      {
+        "id": 57623,
+        "text": "打开最近使用的ROM #&8"
+      },
+      {
+        "id": 57624,
+        "text": "打开最近使用的ROM #&9"
+      },
+      {
+        "id": 57625,
+        "text": "打开最近使用的ROM #1&0"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "&载入状态"
+      },
+      {
+        "id": 40423,
+        "text": "&载入当前插槽"
+      },
+      {
+        "id": 40420,
+        "text": "载入&最近使用的插槽"
+      },
+      {
+        "id": 40019,
+        "text": "从文件&载入..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40116,
+        "text": "导入&电池存档..."
+      },
+      {
+        "id": 40115,
+        "text": "导入&GameShark快照..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40045,
+        "text": "插槽 #&1"
+      },
+      {
+        "id": 40046,
+        "text": "插槽 #&2"
+      },
+      {
+        "id": 40047,
+        "text": "插槽 #&3"
+      },
+      {
+        "id": 40048,
+        "text": "插槽 #&4"
+      },
+      {
+        "id": 40049,
+        "text": "插槽 #&5"
+      },
+      {
+        "id": 40050,
+        "text": "插槽 #&6"
+      },
+      {
+        "id": 40051,
+        "text": "插槽 #&7"
+      },
+      {
+        "id": 40052,
+        "text": "插槽 #&8"
+      },
+      {
+        "id": 40053,
+        "text": "插槽 #&9"
+      },
+      {
+        "id": 40054,
+        "text": "插槽 #1&0"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40424,
+        "text": "&Make 'Current' On Load"
+      },
+      {
+        "id": 40431,
+        "text": "Make 'Recent' On &Load"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40393,
+        "text": "&Auto Load Most Recent On Start"
+      },
+      {
+        "id": null,
+        "text": "&保存状态"
+      },
+      {
+        "id": 40427,
+        "text": "&存入当前插槽"
+      },
+      {
+        "id": 40429,
+        "text": "&存入最旧的插槽"
+      },
+      {
+        "id": 57603,
+        "text": "保存到&文件..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40118,
+        "text": "导出&电池存档..."
+      },
+      {
+        "id": 40163,
+        "text": "导出&GameShark快照..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40035,
+        "text": "插槽 #&1"
+      },
+      {
+        "id": 40036,
+        "text": "插槽 #&2"
+      },
+      {
+        "id": 40037,
+        "text": "插槽 #&3"
+      },
+      {
+        "id": 40038,
+        "text": "插槽 #&4"
+      },
+      {
+        "id": 40039,
+        "text": "插槽 #&5"
+      },
+      {
+        "id": 40040,
+        "text": "插槽 #&6"
+      },
+      {
+        "id": 40041,
+        "text": "插槽 #&7"
+      },
+      {
+        "id": 40042,
+        "text": "插槽 #&8"
+      },
+      {
+        "id": 40043,
+        "text": "插槽 #&9"
+      },
+      {
+        "id": 40044,
+        "text": "插槽 #1&0"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40428,
+        "text": "&Make 'Current' On Save"
+      },
+      {
+        "id": null,
+        "text": "当前&插槽"
+      },
+      {
+        "id": 40430,
+        "text": "&插槽号+1"
+      },
+      {
+        "id": 40416,
+        "text": "&插槽号-1"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40440,
+        "text": "插槽 #&1"
+      },
+      {
+        "id": 40441,
+        "text": "插槽 #&2"
+      },
+      {
+        "id": 40442,
+        "text": "插槽 #&3"
+      },
+      {
+        "id": 40443,
+        "text": "插槽 #&4"
+      },
+      {
+        "id": 40444,
+        "text": "插槽 #&5"
+      },
+      {
+        "id": 40445,
+        "text": "插槽 #&6"
+      },
+      {
+        "id": 40446,
+        "text": "插槽 #&7"
+      },
+      {
+        "id": 40447,
+        "text": "插槽 #&8"
+      },
+      {
+        "id": 40448,
+        "text": "插槽 #&9"
+      },
+      {
+        "id": 40449,
+        "text": "插槽 #1&0"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 42405,
+        "text": "显示&创建时间"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40014,
+        "text": "&暂停"
+      },
+      {
+        "id": 40137,
+        "text": "&前进一帧"
+      },
+      {
+        "id": 42410,
+        "text": "    &考虑帧数延迟"
+      },
+      {
+        "id": 40258,
+        "text": "回&退"
+      },
+      {
+        "id": 40262,
+        "text": "回退&设置..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40018,
+        "text": "&软复位"
+      },
+      {
+        "id": 57602,
+        "text": "&关闭游戏"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40100,
+        "text": "ROM&信息..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40002,
+        "text": "退出&模拟器"
+      },
+      {
+        "id": null,
+        "text": "&设置"
+      },
+      {
+        "id": null,
+        "text": "&输入"
+      },
+      {
+        "id": null,
+        "text": "&设置键位"
+      },
+      {
+        "id": 40199,
+        "text": "配置 &1..."
+      },
+      {
+        "id": 40200,
+        "text": "配置 &2..."
+      },
+      {
+        "id": 40201,
+        "text": "配置 &3..."
+      },
+      {
+        "id": 40202,
+        "text": "配置 &4..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40103,
+        "text": "&运动传感器..."
+      },
+      {
+        "id": null,
+        "text": "&使用键位"
+      },
+      {
+        "id": 40208,
+        "text": "配置 &1"
+      },
+      {
+        "id": 40209,
+        "text": "配置 &2"
+      },
+      {
+        "id": 40210,
+        "text": "配置 &3"
+      },
+      {
+        "id": 40211,
+        "text": "配置 &4"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40382,
+        "text": "&允许 左+右/上+下"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "连&发"
+      },
+      {
+        "id": 40366,
+        "text": "&A"
+      },
+      {
+        "id": 40367,
+        "text": "&B"
+      },
+      {
+        "id": 40368,
+        "text": "&L"
+      },
+      {
+        "id": 40369,
+        "text": "&R"
+      },
+      {
+        "id": 40370,
+        "text": "&Start"
+      },
+      {
+        "id": 40371,
+        "text": "Selec&t"
+      },
+      {
+        "id": 40372,
+        "text": "&上"
+      },
+      {
+        "id": 40373,
+        "text": "&下"
+      },
+      {
+        "id": 40374,
+        "text": "&左"
+      },
+      {
+        "id": 40375,
+        "text": "&右"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40376,
+        "text": "&清除所有"
+      },
+      {
+        "id": 42408,
+        "text": "考虑&帧数延迟"
+      },
+      {
+        "id": null,
+        "text": "自动&长按"
+      },
+      {
+        "id": 40399,
+        "text": "&A"
+      },
+      {
+        "id": 40400,
+        "text": "&B"
+      },
+      {
+        "id": 40410,
+        "text": "&L"
+      },
+      {
+        "id": 40402,
+        "text": "&R"
+      },
+      {
+        "id": 40403,
+        "text": "&Start"
+      },
+      {
+        "id": 40404,
+        "text": "Selec&t"
+      },
+      {
+        "id": 40405,
+        "text": "&上"
+      },
+      {
+        "id": 40406,
+        "text": "&下"
+      },
+      {
+        "id": 40407,
+        "text": "&左"
+      },
+      {
+        "id": 40408,
+        "text": "&右"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40412,
+        "text": "&清除所有"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40452,
+        "text": "自定义&快捷键..."
+      },
+      {
+        "id": null,
+        "text": "&速度"
+      },
+      {
+        "id": null,
+        "text": "设置&速率"
+      },
+      {
+        "id": 40324,
+        "text": "6% (低速)"
+      },
+      {
+        "id": 40325,
+        "text": "15%"
+      },
+      {
+        "id": 40326,
+        "text": "25%"
+      },
+      {
+        "id": 40328,
+        "text": "50% (0.5倍速)"
+      },
+      {
+        "id": 40329,
+        "text": "75%"
+      },
+      {
+        "id": 40331,
+        "text": "100% (1倍速)"
+      },
+      {
+        "id": 40334,
+        "text": "150%"
+      },
+      {
+        "id": 40335,
+        "text": "200% (2倍速)"
+      },
+      {
+        "id": 40336,
+        "text": "300%"
+      },
+      {
+        "id": 40337,
+        "text": "400%"
+      },
+      {
+        "id": 40338,
+        "text": "600% (高速)"
+      },
+      {
+        "id": 40221,
+        "text": "&其他倍率..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40364,
+        "text": "&增加倍率"
+      },
+      {
+        "id": 40365,
+        "text": "&减少倍率"
+      },
+      {
+        "id": null,
+        "text": "&跳帧"
+      },
+      {
+        "id": 40350,
+        "text": "&0 (无跳帧)"
+      },
+      {
+        "id": 40351,
+        "text": "&1 (隔一帧跳过)"
+      },
+      {
+        "id": 40352,
+        "text": "&2 (每3帧跳过2帧)"
+      },
+      {
+        "id": 40353,
+        "text": "&3"
+      },
+      {
+        "id": 40354,
+        "text": "&4"
+      },
+      {
+        "id": 40355,
+        "text": "&5"
+      },
+      {
+        "id": 40356,
+        "text": "&6"
+      },
+      {
+        "id": 40357,
+        "text": "&7"
+      },
+      {
+        "id": 40358,
+        "text": "&8"
+      },
+      {
+        "id": 40359,
+        "text": "&9 (每10帧跳过9帧)"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40158,
+        "text": "&加速模式"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40017,
+        "text": "同步&模拟器速度"
+      },
+      {
+        "id": 40289,
+        "text": "    精确音调"
+      },
+      {
+        "id": 40290,
+        "text": "    精确模拟速度"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "&视频"
+      },
+      {
+        "id": null,
+        "text": "&渲染方式"
+      },
+      {
+        "id": 40228,
+        "text": "&GDI"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40229,
+        "text": "&DirectDraw"
+      },
+      {
+        "id": 40070,
+        "text": "    DDraw 仅模拟"
+      },
+      {
+        "id": 40071,
+        "text": "    DDraw 使用显存"
+      },
+      {
+        "id": 40192,
+        "text": "    DDraw 三重缓冲"
+      },
+      {
+        "id": 40009,
+        "text": "    DDraw 垂直同步"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40230,
+        "text": "Direct&3D"
+      },
+      {
+        "id": 40233,
+        "text": "    D3D 最近邻"
+      },
+      {
+        "id": 40234,
+        "text": "    D3D 双线性"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40231,
+        "text": "&OpenGL"
+      },
+      {
+        "id": 40237,
+        "text": "    GL Ne&arest"
+      },
+      {
+        "id": 40238,
+        "text": "    GL B&ilinear"
+      },
+      {
+        "id": 40239,
+        "text": "    GL T&riangle"
+      },
+      {
+        "id": 40240,
+        "text": "    GL &Quads"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40010,
+        "text": "1x窗口大小"
+      },
+      {
+        "id": 40011,
+        "text": "2x窗口大小"
+      },
+      {
+        "id": 40012,
+        "text": "3x窗口大小"
+      },
+      {
+        "id": 40013,
+        "text": "4x窗口大小"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40076,
+        "text": "全屏(320x240)"
+      },
+      {
+        "id": 40077,
+        "text": "全屏(640x480)"
+      },
+      {
+        "id": 40164,
+        "text": "全屏(800x600)"
+      },
+      {
+        "id": 40191,
+        "text": "其他全屏大小..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40273,
+        "text": "全屏(最大比例)..."
+      },
+      {
+        "id": 40089,
+        "text": "全屏(忽略比例)"
+      },
+      {
+        "id": 40263,
+        "text": "全屏(隐藏菜单)"
+      },
+      {
+        "id": 40255,
+        "text": "全屏(自动隐藏菜单)"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40033,
+        "text": "禁用SFX"
+      },
+      {
+        "id": null,
+        "text": "图&层"
+      },
+      {
+        "id": 40127,
+        "text": "BG 0"
+      },
+      {
+        "id": 40128,
+        "text": "BG 1"
+      },
+      {
+        "id": 40129,
+        "text": "BG 2"
+      },
+      {
+        "id": 40130,
+        "text": "BG 3"
+      },
+      {
+        "id": 40131,
+        "text": "OBJ"
+      },
+      {
+        "id": 40132,
+        "text": "WIN 0"
+      },
+      {
+        "id": 40133,
+        "text": "WIN 1"
+      },
+      {
+        "id": 40134,
+        "text": "OBJ WIN"
+      },
+      {
+        "id": null,
+        "text": "像素&滤镜"
+      },
+      {
+        "id": null,
+        "text": "帧间混合"
+      },
+      {
+        "id": 40188,
+        "text": "无"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40189,
+        "text": "动态模糊"
+      },
+      {
+        "id": 40190,
+        "text": "智能"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "其他2x选项"
+      },
+      {
+        "id": 40078,
+        "text": "无"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40083,
+        "text": "TV模式"
+      },
+      {
+        "id": 40223,
+        "text": "Scanlines"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40186,
+        "text": "双线性"
+      },
+      {
+        "id": 40187,
+        "text": "双线性Plus"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40122,
+        "text": "动态模糊"
+      },
+      {
+        "id": null,
+        "text": "&2x放大"
+      },
+      {
+        "id": 40161,
+        "text": "2&x简易的"
+      },
+      {
+        "id": 40121,
+        "text": "&2x像素化"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40079,
+        "text": "&2xSaI"
+      },
+      {
+        "id": 40081,
+        "text": "&Super 2xSaI"
+      },
+      {
+        "id": 40082,
+        "text": "Super &Eagle"
+      },
+      {
+        "id": 40160,
+        "text": "&AdvanceMAME Scale2x"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40275,
+        "text": "LQ2x"
+      },
+      {
+        "id": 40276,
+        "text": "HQ2x"
+      },
+      {
+        "id": 40277,
+        "text": "HQ2xS"
+      },
+      {
+        "id": null,
+        "text": "&3x放大"
+      },
+      {
+        "id": 40165,
+        "text": "3&x简易的"
+      },
+      {
+        "id": 40167,
+        "text": "&3x像素化"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40278,
+        "text": "HQ3x"
+      },
+      {
+        "id": 40279,
+        "text": "HQ3xS"
+      },
+      {
+        "id": null,
+        "text": "&4x放大"
+      },
+      {
+        "id": 40166,
+        "text": "4&x简易的"
+      },
+      {
+        "id": 40168,
+        "text": "&4x像素化"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40093,
+        "text": "禁用MMX优化"
+      },
+      {
+        "id": null,
+        "text": "音频"
+      },
+      {
+        "id": 40022,
+        "text": "静音"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40003,
+        "text": "静音所有声道"
+      },
+      {
+        "id": 40378,
+        "text": "前进帧时静音"
+      },
+      {
+        "id": 42404,
+        "text": "非活动时静音"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40136,
+        "text": "使用旧同步方式"
+      },
+      {
+        "id": 40150,
+        "text": "反转立体声"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40148,
+        "text": "回声"
+      },
+      {
+        "id": 40149,
+        "text": "声音过滤"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "&音量"
+      },
+      {
+        "id": 40271,
+        "text": "0.25x"
+      },
+      {
+        "id": 40270,
+        "text": "0.5x"
+      },
+      {
+        "id": 40182,
+        "text": "&1x"
+      },
+      {
+        "id": 40183,
+        "text": "&2x"
+      },
+      {
+        "id": 40184,
+        "text": "&3x"
+      },
+      {
+        "id": 40185,
+        "text": "&4x"
+      },
+      {
+        "id": null,
+        "text": "通道"
+      },
+      {
+        "id": 40024,
+        "text": "启用所有通道"
+      },
+      {
+        "id": 40023,
+        "text": "禁用所有通道"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40025,
+        "text": "通道 1"
+      },
+      {
+        "id": 40026,
+        "text": "通道 2"
+      },
+      {
+        "id": 40027,
+        "text": "通道 3"
+      },
+      {
+        "id": 40028,
+        "text": "通道 4"
+      },
+      {
+        "id": 40020,
+        "text": "Direct Sound &A"
+      },
+      {
+        "id": 40021,
+        "text": "Direct Sound &B"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40067,
+        "text": "&11 Khz"
+      },
+      {
+        "id": 40068,
+        "text": "&22 Khz"
+      },
+      {
+        "id": 40069,
+        "text": "&44 Khz"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "模拟器"
+      },
+      {
+        "id": 40248,
+        "text": "真实时钟"
+      },
+      {
+        "id": null,
+        "text": "存档类型"
+      },
+      {
+        "id": 40169,
+        "text": "&自动识别"
+      },
+      {
+        "id": 40170,
+        "text": "&EEPROM"
+      },
+      {
+        "id": 40171,
+        "text": "&SRAM"
+      },
+      {
+        "id": 40172,
+        "text": "&Flash"
+      },
+      {
+        "id": 40173,
+        "text": "EE&PROM+传感器"
+      },
+      {
+        "id": 40264,
+        "text": "无"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40174,
+        "text": "Flash &64K"
+      },
+      {
+        "id": 40175,
+        "text": "Flash &128K"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40265,
+        "text": "增强&检测"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40394,
+        "text": "减少GBA延迟"
+      },
+      {
+        "id": 40395,
+        "text": "使用旧帧时序"
+      },
+      {
+        "id": 40398,
+        "text": "    使用v20 GB 帧临时方案"
+      },
+      {
+        "id": 40396,
+        "text": "使用GB空输入临时方案"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40029,
+        "text": "&使用BIOS"
+      },
+      {
+        "id": 40259,
+        "text": "跳过BIOS&画面"
+      },
+      {
+        "id": 40030,
+        "text": "选择&BIOS文件..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40176,
+        "text": "自动使用IPS&补丁"
+      },
+      {
+        "id": null,
+        "text": "Gameboy 模式"
+      },
+      {
+        "id": 40057,
+        "text": "自动识别"
+      },
+      {
+        "id": 40059,
+        "text": "GBA"
+      },
+      {
+        "id": 40058,
+        "text": "GBC"
+      },
+      {
+        "id": 40249,
+        "text": "GBC + SGB 边框"
+      },
+      {
+        "id": 40060,
+        "text": "SGB"
+      },
+      {
+        "id": 40062,
+        "text": "GB"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40256,
+        "text": "自动显示边框"
+      },
+      {
+        "id": 40034,
+        "text": "始终显示边框"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40108,
+        "text": "GB 打印机"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40063,
+        "text": "真实色彩"
+      },
+      {
+        "id": 40064,
+        "text": "Ga&meboy Colors"
+      },
+      {
+        "id": 40147,
+        "text": "自定义颜色..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "&信息显示"
+      },
+      {
+        "id": 40341,
+        "text": "&帧数"
+      },
+      {
+        "id": 40464,
+        "text": "    &延迟"
+      },
+      {
+        "id": 42413,
+        "text": "    &扩展计数"
+      },
+      {
+        "id": 42415,
+        "text": "    重置扩展计数"
+      },
+      {
+        "id": 40342,
+        "text": "&按键输入"
+      },
+      {
+        "id": 42416,
+        "text": "    &下一帧按键输入"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40397,
+        "text": "&文本显示设置..."
+      },
+      {
+        "id": 40102,
+        "text": "禁用状态消息"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "速度&显示"
+      },
+      {
+        "id": 40195,
+        "text": "无"
+      },
+      {
+        "id": 40196,
+        "text": "百分比"
+      },
+      {
+        "id": 40197,
+        "text": "详细"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40198,
+        "text": "透明"
+      },
+      {
+        "id": null,
+        "text": "&偏好"
+      },
+      {
+        "id": 42402,
+        "text": "窗口置顶"
+      },
+      {
+        "id": 42403,
+        "text": "启用后台输入"
+      },
+      {
+        "id": 40123,
+        "text": "非活动时暂停"
+      },
+      {
+        "id": null,
+        "text": "进程优先级"
+      },
+      {
+        "id": 40072,
+        "text": "最高"
+      },
+      {
+        "id": 40073,
+        "text": "高于正常"
+      },
+      {
+        "id": 40074,
+        "text": "正常"
+      },
+      {
+        "id": 40075,
+        "text": "低于正常"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "相关文件命名"
+      },
+      {
+        "id": 42400,
+        "text": "优先使用磁盘上的存档文件名"
+      },
+      {
+        "id": 42401,
+        "text": "优先使用逻辑ROM文件名"
+      },
+      {
+        "id": 40015,
+        "text": "目录设置..."
+      },
+      {
+        "id": 40091,
+        "text": "关联设置..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "界面语言"
+      },
+      {
+        "id": 40105,
+        "text": "系统"
+      },
+      {
+        "id": 40106,
+        "text": "中文"
+      },
+      {
+        "id": 40107,
+        "text": "其他..."
+      },
+      {
+        "id": null,
+        "text": "作弊"
+      },
+      {
+        "id": 40522,
+        "text": "&RAM 搜索..."
+      },
+      {
+        "id": 40523,
+        "text": "RAM 监视..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40031,
+        "text": "旧作弊码搜索..."
+      },
+      {
+        "id": 40463,
+        "text": "搜索时暂停作弊"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40084,
+        "text": "查看作弊码列表..."
+      },
+      {
+        "id": 40111,
+        "text": "加载作弊码列表..."
+      },
+      {
+        "id": 40110,
+        "text": "保存作弊码列表..."
+      },
+      {
+        "id": 40112,
+        "text": "自动保存/加载作弊码列表"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40117,
+        "text": "导入 Gameshark 码文件..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40272,
+        "text": "禁用所有作弊码"
+      },
+      {
+        "id": null,
+        "text": "&工具"
+      },
+      {
+        "id": null,
+        "text": "&调试"
+      },
+      {
+        "id": 40151,
+        "text": "&反编译..."
+      },
+      {
+        "id": 40156,
+        "text": "&日志..."
+      },
+      {
+        "id": 40266,
+        "text": "&IO查看器..."
+      },
+      {
+        "id": 40138,
+        "text": "&图层查看器..."
+      },
+      {
+        "id": 40143,
+        "text": "内存&查看器..."
+      },
+      {
+        "id": 40144,
+        "text": "&OAM查看器..."
+      },
+      {
+        "id": 40139,
+        "text": "&调色板查看器..."
+      },
+      {
+        "id": 40146,
+        "text": "&碎片查看器..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40247,
+        "text": "&AGB打印"
+      },
+      {
+        "id": null,
+        "text": "&GDB"
+      },
+      {
+        "id": 40152,
+        "text": "端口配置..."
+      },
+      {
+        "id": 40153,
+        "text": "加载并等待..."
+      },
+      {
+        "id": 40155,
+        "text": "中断至GDB"
+      },
+      {
+        "id": 40154,
+        "text": "断开连接"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40432,
+        "text": "搜索帧"
+      },
+      {
+        "id": 40439,
+        "text": "搜索上一帧"
+      },
+      {
+        "id": 40438,
+        "text": "结束搜索帧"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "&使用Lua脚本"
+      },
+      {
+        "id": 40467,
+        "text": "&新建Lua脚本窗口..."
+      },
+      {
+        "id": 40469,
+        "text": "&关闭所有Lua脚本窗口"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "录像"
+      },
+      {
+        "id": 40253,
+        "text": "播放录像..."
+      },
+      {
+        "id": 40387,
+        "text": "从头播放"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40251,
+        "text": "录制新录像..."
+      },
+      {
+        "id": 40388,
+        "text": "恢复/退出录制"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40385,
+        "text": "只读模式"
+      },
+      {
+        "id": null,
+        "text": "编辑模式"
+      },
+      {
+        "id": 42441,
+        "text": "选择下一模式"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 42442,
+        "text": "丢弃模式"
+      },
+      {
+        "id": 42443,
+        "text": "覆盖模式 [W]"
+      },
+      {
+        "id": 42444,
+        "text": "插入模式 [I]"
+      },
+      {
+        "id": 42445,
+        "text": "异或模式 [X]"
+      },
+      {
+        "id": null,
+        "text": "录像结束时"
+      },
+      {
+        "id": 40487,
+        "text": "暂停模拟器"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40490,
+        "text": "关闭录像"
+      },
+      {
+        "id": 40488,
+        "text": "从头开始"
+      },
+      {
+        "id": 40489,
+        "text": "如果修改则追加"
+      },
+      {
+        "id": 40491,
+        "text": "保持打开"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40254,
+        "text": "停止录像"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": null,
+        "text": "帧数工具"
+      },
+      {
+        "id": 40501,
+        "text": "从 VBM 1.0 转换"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40541,
+        "text": "自动转换已打开录像"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40507,
+        "text": "修正文件头"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 42450,
+        "text": "插入1帧"
+      },
+      {
+        "id": 42451,
+        "text": "删除1帧"
+      },
+      {
+        "id": 42452,
+        "text": "插入多帧..."
+      },
+      {
+        "id": 42453,
+        "text": "删除多帧..."
+      },
+      {
+        "id": 40504,
+        "text": "截断至当前帧"
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 42412,
+        "text": "与存档状态关联"
+      },
+      {
+        "id": 42406,
+        "text": "暂停/恢复AVI录制"
+      },
+      {
+        "id": 40177,
+        "text": "开始/停止AVI录制..."
+      },
+      {
+        "id": 40124,
+        "text": "开始/停止WAV录制..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40104,
+        "text": "截&图..."
+      },
+      {
+        "id": null,
+        "text": "截图&格式"
+      },
+      {
+        "id": 40140,
+        "text": "&PNG"
+      },
+      {
+        "id": 40141,
+        "text": "&BMP"
+      },
+      {
+        "id": null,
+        "text": "&帮助"
+      },
+      {
+        "id": 40261,
+        "text": "&FAQ(网页)..."
+      },
+      {
+        "id": 40260,
+        "text": "&反馈..."
+      },
+      {
+        "id": 0,
+        "text": ""
+      },
+      {
+        "id": 40001,
+        "text": "&关于..."
+      }
+    ]
+  },
+  "strings": {
+    "2": "Cannot load save game for %s",
+    "3": "Save game is not using the BIOS file",
+    "4": "Save game is using the BIOS file",
+    "5": "Unsupported save type %d",
+    "6": "Cannot open file %s",
+    "7": "Bad ZIP file %s",
+    "8": "No image found on ZIP file %s",
+    "9": "Error opening image %s",
+    "10": "Error reading image %s",
+    "11": "Unsupported BIOS function %02x called from %08x. A BIOS file is needed in order to get correct behaviour.",
+    "12": "Invalid BIOS file size",
+    "13": "Invalid cheat code '%s'. Supported formats are:\nXXXXXXXX:YY, XXXXXXXX:YYYY, XXXXXXXX:YYYYYYYY.",
+    "14": "Unimplemented opcode %08x from %08x",
+    "15": "Unknown opcode %04x from %08x",
+    "16": "Error creating file %s",
+    "17": "Failed to read complete save game %s (%d)",
+    "18": "Failed to read RTC from save game %s (continuing)",
+    "19": "Unsupported VisualBoy save game version %d",
+    "20": "Cannot load save game for '%s'\nPlaying '%s'",
+    "21": "Error opening image %s from zip file %s",
+    "22": "Error reading image %s from zip file %s",
+    "23": "Unsupported rom size %02x",
+    "24": "Unsupported ram size %02x",
+    "25": "Unknown cartridge type %02x",
+    "26": "Maximum number of cheats reached.",
+    "27": "Invalid GameShark code: %s",
+    "28": "Invalid GameGenie code: %s",
+    "29": "Invalid cheat to remove %d",
+    "30": "Invalid cheat code address: %08x",
+    "31": "Unsupported cheat list version %d",
+    "32": "Unsupported cheat list type %d",
+    "33": "Invalid GSA code. Format is XXXXXXXXYYYYYYYY.",
+    "34": "Cannot import snapshot for %s. Current game is %s",
+    "35": "Unsupported snapshot file %s",
+    "36": "Unsupported ARM mode %02x",
+    "37": "Unsupported code file %s",
+    "38": "Warning: cheats are for game %s. Current game is %s.\nCodes may not work correctly.",
+    "39": "Invalid CBA code. Format is XXXXXXXX YYYY.",
+    "40": "Warning: Codes seem to be for a different game.\nCodes may not work correctly.",
+    "41": "Failed to allocate memory for %s",
+    "43": "Unsupported VisualBoyAdvance save game version %d",
+    "44": "DirectX 7.0 or greater is required to run.\nDownload at http://www.microsoft.com/directx.\n\nError found at: %s",
+    "45": "Disabling Use Video Memory setting",
+    "46": "Setting will be effective the next time you start the emulator",
+    "47": "Disabling Emulation Only setting",
+    "48": "Failed to open file %s",
+    "49": "Failed to read zip directory for file %s",
+    "50": "The file \"%s\" is an unsupported type.",
+    "51": "Cannot create DirectSound %08x",
+    "52": "Cannot SetCooperativeLevel %08x",
+    "53": "Cannot CreateSoundBuffer %08x",
+    "54": "Cannot SetFormat for primary %08x",
+    "55": "Cannot CreateSoundBuffer secondary %08x",
+    "56": "Cannot Play primary %08x",
+    "57": "Search produced %d results.\nThey have been remembered, but are too many to display.\nPlease refine it better by performing additional searches.",
+    "58": "Number cannot be empty",
+    "59": "Invalid address: %08x",
+    "60": "Misaligned half-word address: %08x",
+    "61": "Misaligned word address: %08x",
+    "62": "Value cannot be empty",
+    "63": "Error on StartDoc",
+    "64": "Error on StartPage",
+    "65": "Error printing on StretchDIBits",
+    "66": "Error on EndPage",
+    "67": "Error on EndDoc",
+    "68": "Error",
+    "69": "Joy %d Left",
+    "70": "Joy %d Right",
+    "71": "Joy %d Up",
+    "72": "Joy %d Down",
+    "73": "Joy %d %s",
+    "74": "Select BIOS file",
+    "75": "Reset",
+    "76": "turbo A off",
+    "77": "turbo A on",
+    "78": "turbo B off",
+    "79": "turbo B on",
+    "80": "turbo L off",
+    "81": "turbo L on",
+    "82": "turbo R off",
+    "83": "turbo R on",
+    "84": "Select ROM",
+    "85": "Select save game name",
+    "86": "Loaded state",
+    "87": "Loaded %d",
+    "88": "Saved state",
+    "89": "Saved %d",
+    "90": "Loaded battery",
+    "91": "Select screen capture name",
+    "92": "Screen capture",
+    "93": "Address",
+    "94": "Old Value",
+    "95": "New Value",
+    "96": "Add cheat code",
+    "97": "Code",
+    "98": "描述",
+    "99": "Status",
+    "100": "Failed to load library %s",
+    "101": "Failed to get locale information",
+    "102": "Select cheat list name",
+    "103": "Gameboy Advance_*.bin;*.agb;*.gba;*.bios;*.zip;*.z;*.gz;*.tar_所有文件_*.*__",
+    "104": "All Gameboy / Gameboy Advance_*.bin;*.agb;*.gba;*.mb;*.elf;*.gb;*.sgb;*.cgb;*.gbc;*.zip;*.z;*.gz;*.7z;*.rar;*.lzma;*.bz2;*.bzip2;*.tar_All GB / GBA (uncompressed only)_*.bin;*.agb;*.gba;*.mb;*.elf;*.gb;*.sgb;*.cgb;*.gbc_Gameboy Advance (uncompressed only)_*.bin;*.agb;*.gba_Gameboy (uncompressed only)_*.gb;*.sgb;*.cgb;*.gbc_Archive Files_*.zip;*.z;*.gz;*.7z;*.rar;*.lzma;*.bz2;*.bzip2;*.tar_All Files_*.*__",
+    "105": "VisualBoyAdvance Save Game_*.sgm_所有文件_*.*__",
+    "106": "VisualBoyAdvance Cheat List_*.clt_所有文件_*.*__",
+    "107": "PNG Image_*.png_BMP Image_*.bmp_所有文件_*.*__",
+    "108": "Gameshark Snapshot_*.sps_所有文件_*.*__",
+    "109": "Select snapshot file",
+    "110": "Battery file_*.sav_Flash save_*.dat_所有文件_*.*__",
+    "111": "Select battery file",
+    "112": "Gameboy Snapshot_*.gbs_All Files_*.*__",
+    "113": "Gameshark Code File_*.gcf_All Files_*.*__",
+    "114": "Select code file",
+    "115": "Importing a snapshot file will erase any saved games and reset the emulator. Do you want to continue?",
+    "116": "Please confirm action",
+    "117": "Importing a code file will erase any entered codes. Do you want to continue?",
+    "118": "Gameshark Code File_*.spc;*.xpc_All Files_*.*__",
+    "119": "Add CodeBreakerAdvance code",
+    "120": "Wave file_*.wav_All Files_*.*__",
+    "121": "Select wave file name",
+    "122": "All Gameboy_*.gb;*.sgb;*.cgb;*.gbc;*.zip;*.z;*.gz;*.7z;*.rar;*.lzma;*.bz2;*.bzip2;*.tar_Gameboy_*.gb_Super Gameboy_*.sgb_Color Gameboy_*.cgb;*.gbc_All Files_*.*__",
+    "123": "Windows Palette (*.PAL)_*.pal_PaintShop Palette (*.PAL)_*.pal_Adobe Color Table (*.ACT)_*.act_All Files_*.*__",
+    "124": "Select palette name:",
+    "125": "Search produced no results.",
+    "126": "Error binding socket. Port probably in use.",
+    "127": "Error listening on socket.",
+    "128": "Error creating socket.",
+    "129": "ACK not received from GDB.",
+    "130": "Error: not a GBA image.",
+    "131": "EEPROM saves cannot be exported.",
+    "132": "Memory Dump_*.dmp_All Files_*.*__",
+    "133": "Select dump file name",
+    "134": "AVI File_*.avi_All Files_*.*__",
+    "135": "Select AVI file name",
+    "136": "Invalid throttle value. Please enter a number between 5 and 1000.",
+    "137": "Skin INI File_*.ini_All Files_*.*__",
+    "138": "Select the skin file name",
+    "139": "VisualBoyAdvance Movie (.vbm)_*.vbm;*.zip;*.z;*.gz;*.7z;*.rar;*.lzma;*.bz2;*.bzip2;*.tar_VisualBoyAdvance Movie (uncompressed only)_*.vbm_Archive Files_*.zip;*.z;*.gz;*.7z;*.rar;*.lzma;*.bz2;*.bzip2;*.tar_All Files_*.*__",
+    "141": "Select movie name",
+    "142": "The bug report information is now available on the Windows Clipboard. Please paste it into any bug report made by email or on forums to help solve problems more easily.",
+    "143": "Unsupported movie version %d.",
+    "144": "end of movie",
+    "145": "Invalid rewind interval value. Please enter a number between 0 and 600 seconds.",
+    "146": "VisualBoyAdvance no longer uses the registry to store its settings. Your previous settings have been exported into the file: %s",
+    "147": "Playing a movie will load a save state which may erase your previous battery saves. Please be sure to have a saved state if you don't want to loose any previous data.",
+    "148": "autofire off",
+    "149": "autofire already off",
+    "150": "turbo Start off",
+    "151": "turbo Start on",
+    "152": "turbo Select off",
+    "153": "turbo Select on",
+    "154": "turbo Up off",
+    "155": "turbo Up on",
+    "156": "turbo Down off",
+    "157": "turbo Down on",
+    "158": "turbo Left off",
+    "159": "turbo Left on",
+    "160": "turbo Right off",
+    "161": "turbo Right on",
+    "162": "Re-record from Slot %d",
+    "163": "Rewind to Slot %d",
+    "164": "Loaded cheats",
+    "165": "Add GameGenie code",
+    "166": "Add GameShark code",
+    "167": "Add GamesharkAdvance code",
+    "168": "Pocket Printer",
+    "169": "Unknown",
+    "170": "None",
+    "171": "Unsupported display setting for color depth: %d bits. \nWindows desktop must be in either 16-bit, 24-bit or 32-bit mode for this program to work in window mode.",
+    "172": "Select movie directory:",
+    "173": "Select GBA ROM directory:",
+    "174": "Select GBx ROM directory:",
+    "175": "Select Battery directory:",
+    "176": "Select Save Directory:",
+    "177": "Select Capture directory:",
+    "178": "Select AVI recording directory:",
+    "179": "Select Sound recording directory:",
+    "180": "Select Cheat list directory:",
+    "181": "Select Memory watch file directory:",
+    "182": "Select IPS directory:",
+    "183": "Select Plugin directory:",
+    "184": "Lua 脚本 (.lua)_*.lua_所有文件_*.*__",
+    "185": "请选择Lua脚本文件",
+    "186": "Select Lua script file directory:",
+    "187": "开始AVI录制...",
+    "188": "停止AVI录制",
+    "189": "暂停AVI录制",
+    "190": "恢复AVI录制",
+    "191": "开始WAV录制...",
+    "192": "停止WAV录制"
+  }
+}

@@ -26,6 +26,7 @@ using namespace std;
 	#include "../win32/MainWnd.h"
 	#include "../win32/VBA.h"
 	#include "../win32/Dialogs/LuaOpenDialog.h"
+	#include "lua-win32-text.h"
 #else
 	#define stricmp strcasecmp
 	#define strnicmp strncasecmp
@@ -121,6 +122,22 @@ static uint8  lua_joypads_used = 0;
 
 static bool8  gui_used = false;
 static uint8 *gui_data = NULL;		  // BGRA
+
+#if defined(WIN32) && !defined(SDL)
+// Text-only display layer: three samples per original LCD pixel. A logical 8px
+// label uses the native 12px Fusion font at 2x, without enlarging its footprint.
+struct LuaHDText
+{
+	int x, y, size, style, maxWidth;
+	uint32 foreground, outline, background;
+	std::wstring text, face;
+};
+static std::vector<LuaHDText> gui_hd_commands;
+static std::vector<LuaHDText> gui_hd_callback_commands;
+static std::vector<uint32> gui_hd_pixels;
+static bool gui_hd_ready = false, gui_hd_dirty = false, gui_hd_in_callback = false;
+static void RenderLuaHDText();
+#endif
 
 // Remap input display
 struct LuaInputDisplayRemap
@@ -287,6 +304,11 @@ static void VBALuaOnStop(void)
 	luaRunning		 = false;
 	lua_joypads_used = 0;
 	gui_used		 = false;
+#if defined(WIN32) && !defined(SDL)
+	gui_hd_ready = gui_hd_dirty = gui_hd_in_callback = false;
+	gui_hd_commands.clear();
+	gui_hd_callback_commands.clear();
+#endif
 	for (int i = 0; i < 4; ++i)
 	{
 		lua_input_display_remap[i].from = 0;
@@ -3442,6 +3464,9 @@ static void LuaDisplayString(const char *string, int y, int x, uint32 color, uin
 //  Displays the given text on the screen, using the same font and techniques as the
 
 //  main HUD.
+static int gui_textutf8(lua_State *L);
+static int gui_texthd(lua_State *L);
+
 static int gui_text(lua_State *L)
 {
 	//extern int font_height;
@@ -3454,6 +3479,34 @@ static int gui_text(lua_State *L)
 	//msg = luaL_checkstring(L, 3);
 	msg = toCString(L, 3);
 
+#if (defined(WIN32) && !defined(SDL))
+	for (const unsigned char *p = (const unsigned char *)msg; *p; ++p)
+		if (*p >= 128)
+		{
+			// Keep legacy 4px ASCII HUDs; mixed UTF-8 uses the HD 12px font.
+			if (lua_type(L, 3) != LUA_TSTRING)
+			{
+				lua_pushstring(L, msg);
+				lua_replace(L, 3);
+			}
+			if (lua_isnoneornil(L, 6))
+			{
+				if (lua_gettop(L) < 6) lua_settop(L, 6);
+				lua_pushinteger(L, 12);
+				lua_replace(L, 6);
+			}
+			else
+			{
+				int logicalSize = luaL_checkinteger(L, 6);
+				if (logicalSize < 8 || logicalSize > 64)
+					return luaL_error(L, "gui.text: pixel height must be 8..64");
+				lua_pushinteger(L, (logicalSize * 3 + 1) / 2);
+				lua_replace(L, 6);
+			}
+			return gui_texthd(L);
+		}
+#endif
+
 	//	if (x < 0 || x >= LUA_SCREEN_WIDTH || y < 0 || y >= (LUA_SCREEN_HEIGHT - font_height))
 	//		luaL_error(L,"bad coordinates");
 	colour		 = gui_optcolour(L, 4, LUA_BUILD_PIXEL(255, 255, 255, 255));
@@ -3464,6 +3517,166 @@ static int gui_text(lua_State *L)
 	LuaDisplayString(msg, y, x, colour, borderColour);
 
 	return 0;
+}
+
+#if (defined(WIN32) && !defined(SDL))
+struct LuaUTF8Plot
+{
+	uint32 foreground, outline;
+	LuaUTF8Plot(uint32 f, uint32 o) : foreground(f), outline(o) {}
+	void operator()(int x, int y, bool border) const
+	{
+		gui_drawpixel_internal(x, y, border ? outline : foreground);
+	}
+};
+#endif
+
+// gui.textutf8(x, y, UTF8, foreground, outline, pixelHeight=12, fontFace=nil)
+// Uses the existing Lua overlay, so all display backends see the same pixels.
+// Legacy gui.text/drawtext retain their original metrics for ASCII-only text.
+static int gui_textutf8(lua_State *L)
+{
+#if (defined(WIN32) && !defined(SDL))
+	int x = luaL_checkinteger(L, 1);
+	int y = luaL_checkinteger(L, 2);
+	size_t length = 0;
+	const char *msg = luaL_checklstring(L, 3, &length);
+	uint32 colour = gui_optcolour(L, 4, LUA_BUILD_PIXEL(255, 255, 255, 255));
+	uint32 border = gui_optcolour(L, 5, LUA_BUILD_PIXEL(255, 0, 0, 0));
+	int size = luaL_optinteger(L, 6, 12);
+	size_t faceLength = 0;
+	const char *faceName = luaL_optlstring(L, 7, "", &faceLength);
+	int style = luaL_optinteger(L, 8, 3);
+	if (size < 8 || size > 64)
+		return luaL_error(L, "gui.textutf8: pixel height must be between 8 and 64");
+	if (style < 0 || style > 3)
+		return luaL_error(L, "gui.textutf8: outline style must be 0..3");
+	const char *error = NULL;
+	{
+		std::wstring text;
+		std::wstring face;
+		static LuaWin32Text::Rasterizer font;
+		if (!LuaWin32Text::DecodeUTF8(msg, length, text))
+			error = "gui.textutf8: invalid UTF-8 string (save the script as UTF-8 without BOM)";
+		else if (!LuaWin32Text::DecodeUTF8(faceName, faceLength, face))
+			error = "gui.textutf8: invalid UTF-8 font name";
+		else if (!font.setSize(size, face.empty() ? NULL : face.c_str()))
+			error = "gui.textutf8: could not create the Windows font";
+		else
+		{
+			gui_prepare();
+			if (!LuaWin32Text::Draw(font, text, x, y, LUA_SCREEN_WIDTH,
+				LUA_SCREEN_HEIGHT, LuaUTF8Plot(colour, border), -1, style))
+				error = "gui.textutf8: Windows could not rasterize a glyph";
+		}
+	}
+	// Do not longjmp across live C++ strings.
+	if (error) return luaL_error(L, "%s", error);
+	return 0;
+#else
+	return luaL_error(L, "gui.textutf8 requires the Windows GUI build");
+#endif
+}
+
+// gui.texthd has the same coordinates/colors as textutf8. The native font is
+// rasterized at 2x in a 3x canvas: native 12px keeps an 8px logical footprint.
+static int gui_texthd(lua_State *L)
+{
+#if defined(WIN32) && !defined(SDL)
+	int x = luaL_checkinteger(L, 1), y = luaL_checkinteger(L, 2);
+	size_t length = 0, faceLength = 0;
+	const char *msg = luaL_checklstring(L, 3, &length);
+	uint32 colour = gui_optcolour(L, 4, LUA_BUILD_PIXEL(255, 255, 255, 255));
+	uint32 border = gui_optcolour(L, 5, LUA_BUILD_PIXEL(255, 0, 0, 0));
+	int size = luaL_optinteger(L, 6, 12);
+	const char *face = luaL_optlstring(L, 7, "", &faceLength);
+	int style = luaL_optinteger(L, 8, 2);
+	uint32 background = gui_optcolour(L, 9, 0);
+	int maxWidth = luaL_optinteger(L, 10, LUA_SCREEN_WIDTH);
+	if (size < 8 || size > 96) return luaL_error(L, "gui.texthd: pixel height must be 8..96");
+	if (style < 0 || style > 3) return luaL_error(L, "gui.texthd: outline style must be 0..3");
+	if (maxWidth < 0 || maxWidth > LUA_SCREEN_WIDTH) return luaL_error(L, "gui.texthd: max width must be 0..256");
+	const char *error = NULL;
+	{
+		LuaHDText command;
+		static LuaWin32Text::Rasterizer font;
+		command.x = x; command.y = y; command.size = size; command.style = style;
+		command.foreground = colour; command.outline = border;
+		command.background = background; command.maxWidth = maxWidth;
+		if (!LuaWin32Text::DecodeUTF8(msg, length, command.text)) error = "gui.texthd: invalid UTF-8 text";
+		else if (!LuaWin32Text::DecodeUTF8(face, faceLength, command.face)) error = "gui.texthd: invalid UTF-8 font name";
+		else if (!font.setSize(size * 2, command.face.empty() ? NULL : command.face.c_str())) error = "gui.texthd: could not create the Windows font";
+		else
+		{
+			std::vector<LuaHDText> &commands = gui_hd_in_callback ? gui_hd_callback_commands : gui_hd_commands;
+			if (commands.size() < 4096) commands.push_back(command);
+			else error = "gui.texthd: too many labels in one frame";
+			gui_hd_dirty = true;
+		}
+	}
+	if (error) return luaL_error(L, "%s", error);
+	return 0;
+#else
+	return luaL_error(L, "gui.texthd requires the Windows GUI build");
+#endif
+}
+
+#if defined(WIN32) && !defined(SDL)
+struct LuaHDPlot
+{
+	uint32 foreground, outline;
+	void operator()(int x, int y, bool border) const
+	{
+		blend32(&gui_hd_pixels[y * (LUA_SCREEN_WIDTH * 3) + x], border ? outline : foreground);
+	}
+};
+
+static void RenderLuaHDText()
+{
+	if (!gui_hd_dirty) return; // Keep the last labels visible during paused repaints.
+	gui_hd_dirty = false;
+	gui_hd_ready = !gui_hd_commands.empty() || !gui_hd_callback_commands.empty();
+	if (!gui_hd_ready) return;
+	gui_hd_pixels.assign(LUA_SCREEN_WIDTH * LUA_SCREEN_HEIGHT * 9, 0);
+	static LuaWin32Text::Rasterizer font;
+	// Borders for the entire frame first: later labels cannot erase earlier
+	// labels' strokes, including separately colored numeric fields.
+	for (int pass = -1; pass < 2; ++pass)
+		for (size_t i = 0; i < gui_hd_commands.size() + gui_hd_callback_commands.size(); ++i)
+		{
+			const LuaHDText &c = i < gui_hd_commands.size() ? gui_hd_commands[i] :
+				gui_hd_callback_commands[i - gui_hd_commands.size()];
+			if (c.x < -LUA_SCREEN_WIDTH || c.x >= LUA_SCREEN_WIDTH ||
+				c.y < -LUA_SCREEN_HEIGHT || c.y >= LUA_SCREEN_HEIGHT) continue;
+			if (!font.setSize(c.size * 2, c.face.empty() ? NULL : c.face.c_str())) continue;
+			int clipRight = min(LUA_SCREEN_WIDTH * 3, (c.x + c.maxWidth) * 3);
+			if (pass == -1)
+			{
+				if (!LUA_PIXEL_A(c.background)) continue;
+				int textWidth, textHeight;
+				if (!LuaWin32Text::Measure(font, c.text, textWidth, textHeight)) continue;
+				int right = min(clipRight, c.x * 3 + min(textWidth, LUA_SCREEN_WIDTH * 3) + 1);
+				int bottom = min(LUA_SCREEN_HEIGHT * 3, c.y * 3 + min(textHeight, LUA_SCREEN_HEIGHT * 3) + 1);
+				for (int y = max(0, c.y * 3 - 1); y < bottom; ++y)
+					for (int x = max(0, c.x * 3 - 1); x < right; ++x)
+						blend32(&gui_hd_pixels[y * LUA_SCREEN_WIDTH * 3 + x], c.background);
+				continue;
+			}
+			LuaHDPlot plot = { c.foreground, c.outline };
+			LuaWin32Text::Draw(font, c.text, c.x * 3, c.y * 3,
+				clipRight, LUA_SCREEN_HEIGHT * 3, plot, pass, c.style);
+		}
+}
+#endif
+
+const uint32 *VBALuaHDOverlay(int &width, int &height)
+{
+	width = 256 * 3; height = 224 * 3;
+#if defined(WIN32) && !defined(SDL)
+	return gui_hd_ready ? &gui_hd_pixels[0] : NULL;
+#else
+	return NULL;
+#endif
 }
 
 // gui.gdoverlay([int dx=0, int dy=0,] string str [, sx=0, sy=0, sw, sh] [, float alphamul=1.0])
@@ -4804,6 +5017,8 @@ static const struct luaL_reg movielib[] = {
 static const struct luaL_reg guilib[] = {
 	{ "register",	  gui_register		   },
 	{ "text",		  gui_text			   },
+	{ "textutf8",     gui_textutf8         },
+	{ "texthd",       gui_texthd           },
 	{ "box",		  gui_drawbox		   },
 	{ "line",		  gui_drawline		   },
 	{ "pixel",		  gui_drawpixel		   },
@@ -4876,6 +5091,13 @@ void VBALuaFrameBoundary(void)
 {
 	//	printf("Lua Frame\n");
 
+#if defined(WIN32) && !defined(SDL)
+	// Frame-skipped execution must replace labels rather than queueing every
+	// hidden frame. The last composed frame remains available for repaint.
+	gui_hd_commands.clear();
+	gui_hd_dirty = true;
+#endif
+
 	lua_joypads_used = 0;
 
 	// HA!
@@ -4932,6 +5154,15 @@ void VBALuaFrameBoundary(void)
 	{
 		VBALuaOnStop();
 	}
+#if defined(WIN32) && !defined(SDL)
+	if (theApp.paused)
+	{
+		// emu.pause() yields before the next game frame. Commit its labels now,
+		// and request a repaint without executing the GUI callback twice.
+		RenderLuaHDText();
+		systemRefreshScreen();
+	}
+#endif
 }
 
 /**
@@ -4991,6 +5222,8 @@ int VBALoadLuaCode(const char *filename)
 		luaL_register(LUA, "savestate", savestatelib);
 		luaL_register(LUA, "movie", movielib);
 		luaL_register(LUA, "gui", guilib);
+		lua_pushinteger(LUA, 2);
+		lua_setfield(LUA, -2, "texthdversion");
 		luaL_register(LUA, "input", inputlib);
 		luaL_register(LUA, "sound", soundlib);
 		luaL_register(LUA, "bit", bit_funcs); // LuaBitOp library
@@ -5095,7 +5328,7 @@ int VBALoadLuaCode(const char *filename)
 	if (textMethod == 0)
 	{
 		int pitch = theApp.filterWidth * (systemColorDepth / 8) + (systemColorDepth == 24 ? 0 : 4);
-		systemRenderLua(&pix[pitch], pitch);
+		systemRenderLua(pix, pitch);
 	}
 
 	// We're done.
@@ -5252,6 +5485,14 @@ void VBALuaGui(uint8 *screen, int pitch, int width, int height)
 	if (!LUA /* || !luaRunning*/)
 		return;
 
+#if defined(WIN32) && !defined(SDL)
+	// Callback labels replace only their own batch; coroutine labels survive
+	// pause/repaint. Repeated paints cannot append another copy of a label.
+	gui_hd_callback_commands.clear();
+	gui_hd_dirty = true;
+	gui_hd_in_callback = true;
+#endif
+
 	// First, check if we're being called by anybody
 	lua_getfield(LUA, LUA_REGISTRYINDEX, guiCallbackTable);
 
@@ -5284,6 +5525,10 @@ void VBALuaGui(uint8 *screen, int pitch, int width, int height)
 	// And wreak the stack
 	lua_settop(LUA, 0);
 
+#if defined(WIN32) && !defined(SDL)
+	gui_hd_in_callback = false;
+	RenderLuaHDText();
+#endif
 	if (!gui_used)
 		return;
 

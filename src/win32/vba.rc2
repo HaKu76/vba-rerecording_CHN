@@ -4,6 +4,9 @@
 
 #include "VersionInfo.h"
 
+IDR_FONT_FUSION_8 RCDATA "fusion-pixel-8px-monospaced-zh_hans.otf"
+IDR_FONT_FUSION_12 RCDATA "fusion-pixel-12px-monospaced-zh_hans.otf"
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version

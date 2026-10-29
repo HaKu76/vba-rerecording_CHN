@@ -5,6 +5,8 @@
 #include "MainWnd.h"
 #include "Reg.h"
 #include "VBA.h"
+#include "ClearOverlay.h"
+#include <vector>
 
 #include "../gba/GBAGlobals.h"
 #include "../gb/gbGlobals.h"
@@ -28,6 +30,7 @@ private:
 	HDC    hDC;
 	HGLRC  hglrc;
 	GLuint texture;
+	GLuint clearTexture;
 	int    width;
 	int    height;
 	float  size;
@@ -36,6 +39,7 @@ private:
 
 	bool initializeTexture(int w, int h);
 	void updateFiltering(int);
+	void renderClearOverlay();
 public:
 	OpenGLDisplay();
 	virtual ~OpenGLDisplay();
@@ -58,6 +62,7 @@ OpenGLDisplay::OpenGLDisplay()
 	hDC        = NULL;
 	hglrc      = NULL;
 	texture    = 0;
+	clearTexture = 0;
 	width      = 0;
 	height     = 0;
 	size       = 0.0f;
@@ -72,6 +77,7 @@ OpenGLDisplay::~OpenGLDisplay()
 
 void OpenGLDisplay::cleanup()
 {
+	if (clearTexture) { glDeleteTextures(1, &clearTexture); clearTexture = 0; }
 	if (texture != 0)
 	{
 		glDeleteTextures(1, &texture);
@@ -309,11 +315,6 @@ void OpenGLDisplay::render()
 				buffer);
 	}
 
-	if (textMethod == 1)
-	{
-		DrawTextMessages((u8 *)data, dataPitch, theApp.rect.left, theApp.rect.bottom);
-	}
-
 	// Texturemap complete texture to surface so we have free scaling
 	// and antialiasing
 	if (filterFunction)
@@ -350,66 +351,47 @@ void OpenGLDisplay::render()
 
 	CDC *dc = theApp.m_pMainWnd->GetDC();
 
-	if (textMethod == 2)
-	{
-		for (int slot = 0; slot < SCREEN_MESSAGE_SLOTS; slot++)
-		{
-			if (theApp.screenMessage[slot])
-			{
-				if ((theApp.screenMessageDuration[slot] < 0 || 
-					(int)(GetTickCount() - theApp.screenMessageTime[slot]) < theApp.screenMessageDuration[slot]) &&
-				    (!theApp.disableStatusMessage || slot == 1 || slot == 2))
-				{
-					dc->SetBkMode(TRANSPARENT);
-
-					if (outlinedText)
-					{
-						dc->SetTextColor(textColor != 7 ? RGB(0, 0, 0) : RGB(255, 255, 255));
-						// draw black outline
-						const static int xd [8] = {-1, 0, 1, 1, 1, 0, -1, -1};
-						const static int yd [8] = {-1, -1, -1, 0, 1, 1, 1, 0};
-						for (int i = 0; i < 8; i++)
-						{
-							dc->TextOut(10+xd[i], theApp.surfaceSizeY - 20*(slot+1)+yd[i], theApp.screenMessageBuffer[slot]);
-						}
-					}
-
-					COLORREF color;
-					switch (textColor)
-					{
-					case 0:
-						color = RGB(255, 255, 255); break;
-					case 1:
-						color = RGB(255, 0, 0); break;
-					case 2:
-						color = RGB(255, 255, 0); break;
-					case 3:
-						color = RGB(0, 255, 0); break;
-					case 4:
-						color = RGB(0, 255, 255); break;
-					case 5:
-						color = RGB(0, 0, 255); break;
-					case 6:
-						color = RGB(255, 0, 255); break;
-					case 7:
-						color = RGB(0, 0, 0); break;
-					}
-					dc->SetTextColor(color);
-
-					// draw center text
-					dc->TextOut(10, theApp.surfaceSizeY - 20*(slot+1), theApp.screenMessageBuffer[slot]);
-				}
-				else
-				{
-					theApp.screenMessage[slot] = false;
-				}
-			}
-		}
-	}
-
+	renderClearOverlay();
 	SwapBuffers(dc->GetSafeHdc());
 
 	theApp.m_pMainWnd->ReleaseDC(dc);
+}
+
+void OpenGLDisplay::renderClearOverlay()
+{
+	int overlayWidth = 0, overlayHeight = 0;
+	const u32 *pixels = winPrepareClearOverlay(overlayWidth, overlayHeight);
+	if (!pixels || overlayWidth > 1024 || overlayHeight > 1024) return;
+	static std::vector<u32> rgba;
+	rgba.resize(overlayWidth * overlayHeight);
+	for (size_t i = 0; i < rgba.size(); ++i)
+		rgba[i] = (pixels[i] & 0xff00ff00) | ((pixels[i] & 0xff) << 16) | ((pixels[i] >> 16) & 0xff);
+	glPushAttrib(GL_ENABLE_BIT | GL_TEXTURE_BIT | GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT);
+	glPushClientAttrib(GL_CLIENT_PIXEL_STORE_BIT);
+	if (!clearTexture)
+	{
+		glGenTextures(1, &clearTexture);
+		glBindTexture(GL_TEXTURE_2D, clearTexture);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1024, 1024, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+	}
+	else glBindTexture(GL_TEXTURE_2D, clearTexture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glPixelStorei(GL_UNPACK_ROW_LENGTH, overlayWidth);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, overlayWidth, overlayHeight, GL_RGBA, GL_UNSIGNED_BYTE, &rgba[0]);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glColor4f(1, 1, 1, 1);
+	float right = overlayWidth / 1024.0f, bottom = overlayHeight / 1024.0f;
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex2i(0, 0);
+	glTexCoord2f(right, 0); glVertex2i(theApp.surfaceSizeX, 0);
+	glTexCoord2f(right, bottom); glVertex2i(theApp.surfaceSizeX, theApp.surfaceSizeY);
+	glTexCoord2f(0, bottom); glVertex2i(0, theApp.surfaceSizeY);
+	glEnd();
+	glPopClientAttrib();
+	glPopAttrib();
 }
 
 void OpenGLDisplay::resize(int w, int h)

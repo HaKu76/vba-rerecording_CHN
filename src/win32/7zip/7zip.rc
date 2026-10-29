@@ -1,4 +1,4 @@
-// Microsoft Visual C++ generated resource script.
+﻿// Microsoft Visual C++ generated resource script.
 //
 #include "../resource.h"
 
@@ -17,8 +17,8 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
-#pragma code_page(1252)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(65001)
 #endif //_WIN32
 
 
@@ -29,11 +29,11 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 IDD_ARCHIVEFILECHOOSER DIALOGEX 0, 0, 182, 113
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_THICKFRAME
-CAPTION "Choose File"
+CAPTION "选择文件"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "&OK",IDOK,128,94,50,16
-    PUSHBUTTON      "&Cancel",ID_CANCEL,73,94,50,16
+    DEFPUSHBUTTON   "确定(&O)",IDOK,128,94,50,16
+    PUSHBUTTON      "取消",ID_CANCEL,73,94,50,16
     LISTBOX         IDC_LIST1,4,4,173,87,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 
